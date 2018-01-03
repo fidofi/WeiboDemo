@@ -1,0 +1,115 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{ background: #ededef;}
+li{ list-style-type: none;}
+input{
+    height: 42px;
+    font-size: 16px;
+    border: 0;
+    padding-left: 15px;
+    background: none;
+    outline: 0;
+}
+
+label{
+    line-height: 34px;
+}
+.wrap{
+    width: 442px;
+    margin:100px auto 0;
+}
+h1{
+    text-align: center;
+}
+h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.box{
+    color: #FFF;
+    font-size: 16px;
+    /*height: 352px;*/
+    width: 320px;
+    padding: 10px 62px 38px;;
+    background: #333;
+    border-radius: 4px;
+}
+
+input#male, input#female{
+    cursor: pointer;
+    height: 16px;
+    width: 16px;
+}
+.birthday>div{
+    cursor: pointer;
+    background: #FFF;
+    border-radius: 4px;
+    height: 32px;
+    width: 97px;
+    display: inline-block;
+    margin-right: 5px;
+    padding-top: 10px;
+}
+.birthday select{
+    cursor: pointer;
+    font-size: 14px;
+    border: none;
+    width: 100%;
+    outline: none;
+}
+.sex-select{
+    padding-left: 20px;
+}
+#vc{
+    display: block;
+    /*margin-bottom: 10px;*/
+}
+
+
+
+.inputbox{
+    width: 320px;
+    height: 42px;
+    background: #FFF;
+    border-radius: 4px;
+}
+.inputbox:nth-of-type(1){
+    /*margin-top: 24px;*/
+}
+.inputbox:nth-of-type(2){
+    margin-top: 10px;
+}
+.inputbox:nth-of-type(3){
+    margin-top: 10px;
+}
+.inputbox:nth-last-of-type(2){
+    float: left;
+    /*margin-top: 20px;*/
+    width: 132px;
+}
+.inputbox input{
+    width: 290px;
+}
+.inputbox:nth-last-of-type(2) input{
+    width: 100px;
+}
+
+.vrf-img{
+    cursor: pointer;
+    /*margin-top: 20px;*/
+    float: right;
+}
+.up-btn{
+    cursor: pointer;
+    padding: 0;
+    font-size: 18px;
+    margin-top: 22px;
+    width: 320px;
+    height: 42px;
+    background: #1a910a;
+    border-radius: 4px;
+    text-align: center;
+    color: #FFF;
+}

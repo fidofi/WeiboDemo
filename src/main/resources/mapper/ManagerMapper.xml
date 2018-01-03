@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fidofi.dao.ManagerMapper">
+  <resultMap id="BaseResultMap" type="com.fidofi.entity.Manager">
+    <constructor>
+      <idArg column="rootName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="rootPassword" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="rootSalt" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="rootPower" javaType="java.lang.Byte" jdbcType="TINYINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    rootName, rootPassword, rootSalt, rootPower
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from manager
+    where rootName = #{rootname,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from manager
+    where rootName = #{rootname,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fidofi.entity.Manager">
+    insert into manager (rootName, rootPassword, rootSalt, 
+      rootPower)
+    values (#{rootname,jdbcType=VARCHAR}, #{rootpassword,jdbcType=VARCHAR}, #{rootsalt,jdbcType=VARCHAR}, 
+      #{rootpower,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fidofi.entity.Manager">
+    insert into manager
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rootname != null">
+        rootName,
+      </if>
+      <if test="rootpassword != null">
+        rootPassword,
+      </if>
+      <if test="rootsalt != null">
+        rootSalt,
+      </if>
+      <if test="rootpower != null">
+        rootPower,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rootname != null">
+        #{rootname,jdbcType=VARCHAR},
+      </if>
+      <if test="rootpassword != null">
+        #{rootpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="rootsalt != null">
+        #{rootsalt,jdbcType=VARCHAR},
+      </if>
+      <if test="rootpower != null">
+        #{rootpower,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fidofi.entity.Manager">
+    update manager
+    <set>
+      <if test="rootpassword != null">
+        rootPassword = #{rootpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="rootsalt != null">
+        rootSalt = #{rootsalt,jdbcType=VARCHAR},
+      </if>
+      <if test="rootpower != null">
+        rootPower = #{rootpower,jdbcType=TINYINT},
+      </if>
+    </set>
+    where rootName = #{rootname,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fidofi.entity.Manager">
+    update manager
+    set rootPassword = #{rootpassword,jdbcType=VARCHAR},
+      rootSalt = #{rootsalt,jdbcType=VARCHAR},
+      rootPower = #{rootpower,jdbcType=TINYINT}
+    where rootName = #{rootname,jdbcType=VARCHAR}
+  </update>
+</mapper>

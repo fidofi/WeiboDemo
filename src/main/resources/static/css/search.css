@@ -1,0 +1,196 @@
+/* 搜索框 */
+.searchBar{
+    top:-250px;
+    position: absolute;
+}
+.searchBar .dropdown-btn{
+/*     font-size: 16px; */
+/*     width: 97px; */
+    box-sizing: border-box;
+    width: 20%;
+    height: 40px;
+    background:#F3F3F3;
+    color: #444;
+    border:1px solid #aaa;
+    float: left;
+    position: relative;
+}
+.searchBar .triangel{
+    border-top: 5px solid #555;
+}
+.search-dropdown-btn span{
+    margin-left:-1em;
+    position:relative;
+}
+.search-triangel{
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid #555;
+    width: 0;
+    height: 0;
+    position: absolute;
+    right:-1em;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+.searchBar .dropdown-meau{
+    width: 24%;
+    max-width: 150px;
+    position: absolute;
+    background:#fff;
+    z-index: 99;
+    border:1px solid #aaa;
+    text-align: center;
+    list-style: none;
+    left:50px;
+/*     transform: translateX(-8%); */
+    top:40px;
+}
+.searchBar .dropdown-meau li:hover{
+    cursor: pointer;
+    color: #1087EB;
+}
+.searchBar .dropdown-meau li{
+    padding:1em;
+}
+.searchBar input{
+    text-indent: 1em;
+    width: 60%;
+    height: 36px;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+}
+.searchBar{
+    margin:0 auto;
+    display:table;
+    width: 38%;
+    position: relative;
+}
+.searchBtn{
+    width: 20%;
+    height: 40px;
+    background: #1087EB;
+    color: #fff;
+    position: absolute;
+    right: 0;
+}
+.searchBtn:active{
+    background:#438ACA;
+}
+.searchBtn div{
+    margin-right: 10%;
+    display:inline-block;
+    vertical-align: middle;
+}
+
+
+/* 医学知识库 */
+.featureShow_breadcrumb{
+    font-weight: normal;
+    padding-left: 30px;
+    margin:20px;
+}
+.featureShow_breadcrumb a{
+    color:#2695EE;
+    text-decoration: none;
+}
+.featureShow_breadcrumb span{
+    color:#767676;
+}
+.featureShow_Wrapper{
+    /*width: 88%;*/
+    /*min-width: 88%;*/
+    margin:0 auto;
+    overflow: hidden;
+}
+.featureShow_content{
+    /*width: 100%;*/
+    /*height: 440px;*/
+    border-radius: 5px;
+    background: #fff;
+    overflow: hidden;
+    border:1px solid #aaa;
+    position: relative;
+/*     border-right:2px solid #aaa; */
+}
+
+/* 解决右侧border消失的诡异bug */
+.featureShow_content ul:after{
+    content: "";
+    display: block;
+    width: 1px;
+    height: 440px;
+    background: #aaa;
+    position: absolute;
+    right: 1px;
+}
+.featureItem{
+    width: 33.33333%;
+    padding-left: 6%;
+    float: left;
+    margin-bottom: 40px;
+    box-sizing: border-box;
+    list-style: none;
+}
+.featureItem:nth-child(1),
+.featureItem:nth-child(2),
+.featureItem:nth-child(3){
+    margin-top: 68px;
+}
+.featureItem a{
+    display: block;
+    float: left;
+}
+.featureItem div{
+    margin-top: 19px;
+    display: inline-block;
+    position: absolute;
+    margin-left: 20px;
+    vertical-align: middle;
+/*     line-height: 76px; */
+}
+.featureItem p{
+    font-size: 12px;
+    color:#888;
+    padding-top: 10px;
+}
+.featureItem div:hover{
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.footer{
+    margin-top: 80px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

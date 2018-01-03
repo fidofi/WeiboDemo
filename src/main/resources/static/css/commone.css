@@ -1,0 +1,197 @@
+@import url(normalize.css);
+
+
+html{
+    overflow:auto;
+}
+body{
+    font:14px/1 微软雅黑,"microsoft yahei",Arial,Helvetica,sans-serif;
+    background: #F6F6F6;
+    height:100%;
+}
+
+
+/* =========================================公共控件开始===================================== */
+/* 自适应的图片 */
+.imgWrap{
+    display: inline-block;
+}
+.imgWrap img{
+    width: 100%;
+    vertical-align: middle;
+}
+/* 超链接 */
+.anchor{
+    text-decoration: none;
+}
+.anchor:hover{
+    text-decoration: none;
+    border-bottom: 1px solid #aaa;
+}
+
+
+/* ========================================模板开始======================================== */
+.header{
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    height:60px;
+    background:#fff;
+    width:100%;
+    border-bottom: 1px solid #ccc;
+/*     overflow: ; */
+}
+.header-logo{
+    line-height: 60px;
+    width: 185px;
+    float: left;
+    margin-left:6%;
+}
+.header-memu{
+    float: right;
+    margin-right: 6%;
+}
+.header-memu ul{
+    list-style: none;
+    color:#404040;
+}
+.header-memu_item{
+    float:left;
+    margin:20px;
+}
+.header-memu_item:hover{
+    cursor: pointer;
+}
+.header-memu a{
+    color:#404040;
+}
+.header-memu_line{
+    width: 2px;
+    height: 15px;
+    background:#ccc;
+}
+.register .imgWrap{
+    padding-right: 10px;
+    vertical-align: 1px;
+}
+.login .imgWrap{
+    padding-right: 10px;
+    vertical-align: 1px;
+}
+
+
+.main{
+    overflow: hidden;
+    height: auto;
+    padding-top: 60px;
+    min-height: 100%;
+    width: 100%;
+}
+/* .main main{
+    display: block;
+    padding-top: 60px;
+    padding-bottom: 90px;
+} */
+.container{
+    height: 100%;
+}
+.footer{
+/*     margin-top: -90px; */
+    width: 100%;
+    height: 90px;
+    background:#fff;
+    border-top: 1px solid #ccc;
+    margin: 0 auto;
+    position: relative;
+
+}
+.footerWrap{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 12px;
+    text-align: center;
+    color: #9A9A9A;
+}
+
+.footer li{
+    width: 6em;
+    float: left;
+    list-style-position: inside;
+    color:#9A9A9A;
+    padding-top:1em ;
+}
+.footerWrap li:first-child{
+    list-style: none;
+}
+.footerWrap a{
+    color: #9A9A9A;
+}
+
+
+/* 下拉菜单 */
+.dropdown-btn{
+    position: relative;
+}
+.dropdown-meau-item{
+    font-size: 12px;
+    width: 80%;
+    padding: 1em 0;
+    margin:0 auto;
+    text-align: center;  
+    border-bottom: 1px solid #eee;
+    box-sizing: border-box;
+}
+.dropdown-meau-item i{
+    color: #898989;
+    margin-right: 0.3em;
+}
+.dropdown-meau-item a{
+     text-decoration: none;
+}
+.dropdown-meau-item a:hover{
+    color: #1087EB;
+}
+.dropdown-meau-item a:hover>i{
+    color: #1087EB;
+}
+.dropdown-meau{
+    top: 2em;
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+    list-style: none;
+    width: 8em;
+    z-index:99;
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.triangel{
+    border-left:0.5em solid transparent;
+    border-right: 0.5em solid transparent;
+    border-bottom: 0.5em solid #ddd;
+/*     box-shadow: 0 0 1px 1px red; */
+    width: 0;
+    height: 0;
+    position: absolute;
+    right:3em;
+    top:-0.5em;
+    transform:translate(-50%,-50%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

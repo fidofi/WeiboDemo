@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fidofi.dao.UserFreezeMapper">
+    <resultMap id="BaseResultMap" type="com.fidofi.entity.UserFreeze">
+        <constructor>
+            <idArg column="rootName" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <idArg column="userName" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="freezeTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="freezeResult" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    rootName, userName, freezeTime, freezeResult
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="com.fidofi.entity.UserFreezeKey" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_freeze
+        where rootName = #{rootname,jdbcType=VARCHAR}
+        and userName = #{username,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_freeze
+        where userName = #{username,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="com.fidofi.entity.UserFreezeKey">
+    delete from user_freeze
+    where rootName = #{rootname,jdbcType=VARCHAR}
+      and userName = #{username,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.fidofi.entity.UserFreeze">
+    insert into user_freeze (rootName, userName, freezeTime, 
+      freezeResult)
+    values (#{rootname,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{freezetime,jdbcType=TIMESTAMP}, 
+      #{freezeresult,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.fidofi.entity.UserFreeze">
+        insert into user_freeze
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="rootname != null">
+                rootName,
+            </if>
+            <if test="username != null">
+                userName,
+            </if>
+            <if test="freezetime != null">
+                freezeTime,
+            </if>
+            <if test="freezeresult != null">
+                freezeResult,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="rootname != null">
+                #{rootname,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="freezetime != null">
+                #{freezetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="freezeresult != null">
+                #{freezeresult,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.fidofi.entity.UserFreeze">
+        update user_freeze
+        <set>
+            <if test="freezetime != null">
+                freezeTime = #{freezetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="freezeresult != null">
+                freezeResult = #{freezeresult,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where rootName = #{rootname,jdbcType=VARCHAR}
+        and userName = #{username,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.fidofi.entity.UserFreeze">
+    update user_freeze
+    set freezeTime = #{freezetime,jdbcType=TIMESTAMP},
+      freezeResult = #{freezeresult,jdbcType=VARCHAR}
+    where rootName = #{rootname,jdbcType=VARCHAR}
+      and userName = #{username,jdbcType=VARCHAR}
+  </update>
+</mapper>

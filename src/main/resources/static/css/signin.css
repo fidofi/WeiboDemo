@@ -1,0 +1,104 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{ background: #ededef;}
+li{ list-style-type: none;}
+input{
+    height: 42px;
+    font-size: 16px;
+    border: 0;
+    padding-left: 15px;
+    background: none;
+    outline: 0;
+}
+.wrap{
+    width: 442px;
+    margin:70px auto 0;
+}
+h1{
+    text-align: center;
+}
+h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.box{
+    font-size: 16px;
+    /*height: 352px;*/
+    width: 320px;
+    padding: 0 62px 38px;;
+    background: #333;
+    border-radius: 4px;
+}
+.box ul:after{
+    content: "";
+    clear: both;
+}
+.box ul{
+    height: 71px;
+}
+div.box ul li.selected{
+    color: #FFF;
+    border-bottom: 1px solid #FFF;
+}
+.box ul li{
+    /*我懂了！没有float的话不会脱离文档流*/
+    cursor: pointer;
+    float: left;
+    height: 71px;
+    width: 50%;
+    color: #707070;
+    text-align: center;
+    font-size: 24px;
+    line-height: 71px;
+    border-bottom: 1px solid #707070;
+}
+.inputbox{
+    width: 320px;
+    height: 42px;
+    background: #FFF;
+    border-radius: 4px;
+}
+.mail-inputbox{
+    margin-top: 24px;
+}
+.mail-inputbox input{
+    box-shadow: 0 0 0px 1000px #FFF inset;
+    border-radius: 4px;
+}
+
+.pw-inputbox{
+    margin-top: 10px;
+}
+.pwc-inputbox{
+    margin-top: 8px;
+}
+.vc-inputbox{
+    float: left;
+    margin-top: 20px;
+    width: 132px;
+}
+.inputbox input{
+    width: 290px;
+}
+.vc-inputbox input{
+    width: 100px;
+}
+.vrf-img{
+    cursor: pointer;
+    margin-top: 20px;
+    float: right;
+}
+.up-btn{
+    cursor: pointer;
+    padding: 0;
+    font-size: 18px;
+    margin-top: 22px;
+    width: 320px;
+    height: 42px;
+    background: #1a910a;
+    border-radius: 4px;
+    text-align: center;
+    color: #FFF;
+}

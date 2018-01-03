@@ -1,0 +1,30 @@
+
+@font-face {font-family: "xsxkxtFont";
+  src: url('font_3xfq2v964oyldi.eot'); /* IE9*/
+  src: url('IE6-IE8.eot') format('embedded-opentype'), /* IE6-IE8 */
+  url('chromefirefox.woff') format('woff'), /* chrome, firefox */
+  url('font_3xfq2v964oyldi.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('font_3xfq2v964oyldi.svg') format('svg'); /* iOS 4.1- */
+}
+
+.xsxkxtFont {
+  font-family:"xsxkxtFont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.xk-shouqi:before { content: "\e667"; }
+
+.xk-gantanhao:before { content: "\e62f"; }
+
+.xk-zhuxiao:before { content: "\e617"; }
+
+.xk-cuo:before { content: "\e611"; }
+
+.xk-fanhuidingbu:before { content: "\e61b"; }
+
+.xk-xiugaimima2:before { content: "\e63f"; }
+
+.xk-shouqi-copy:before { content: "\e668"; }

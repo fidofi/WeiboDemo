@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fidofi.dao.NewsDeletionMapper">
+  <resultMap id="BaseResultMap" type="com.fidofi.entity.NewsDeletion">
+    <constructor>
+      <idArg column="newsId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <idArg column="rootName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="deleteResult" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="deleteTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    newsId, rootName, deleteResult, deleteTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.fidofi.entity.NewsDeletionKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from news_delete
+    where newsId = #{newsid,jdbcType=INTEGER}
+      and rootName = #{rootname,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.fidofi.entity.NewsDeletionKey">
+    delete from news_delete
+    where newsId = #{newsid,jdbcType=INTEGER}
+      and rootName = #{rootname,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fidofi.entity.NewsDeletion">
+    insert into news_delete (newsId, rootName, deleteResult, 
+      deleteTime)
+    values (#{newsid,jdbcType=INTEGER}, #{rootname,jdbcType=VARCHAR}, #{deleteresult,jdbcType=VARCHAR}, 
+      #{deletetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fidofi.entity.NewsDeletion">
+    insert into news_delete
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="newsid != null">
+        newsId,
+      </if>
+      <if test="rootname != null">
+        rootName,
+      </if>
+      <if test="deleteresult != null">
+        deleteResult,
+      </if>
+      <if test="deletetime != null">
+        deleteTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="newsid != null">
+        #{newsid,jdbcType=INTEGER},
+      </if>
+      <if test="rootname != null">
+        #{rootname,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteresult != null">
+        #{deleteresult,jdbcType=VARCHAR},
+      </if>
+      <if test="deletetime != null">
+        #{deletetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fidofi.entity.NewsDeletion">
+    update news_delete
+    <set>
+      <if test="deleteresult != null">
+        deleteResult = #{deleteresult,jdbcType=VARCHAR},
+      </if>
+      <if test="deletetime != null">
+        deleteTime = #{deletetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where newsId = #{newsid,jdbcType=INTEGER}
+      and rootName = #{rootname,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fidofi.entity.NewsDeletion">
+    update news_delete
+    set deleteResult = #{deleteresult,jdbcType=VARCHAR},
+      deleteTime = #{deletetime,jdbcType=TIMESTAMP}
+    where newsId = #{newsid,jdbcType=INTEGER}
+      and rootName = #{rootname,jdbcType=VARCHAR}
+  </update>
+</mapper>

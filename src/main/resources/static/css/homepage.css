@@ -1,0 +1,115 @@
+
+.banner{
+    height: 376px;
+    background: #333;
+    width: 100%;
+    margin-top: 88px;
+}
+
+
+.p-info{
+    width: 228px;
+    /*height: 202px;*/
+    padding-top: 83px;
+    margin: 0 auto;
+    text-align: center;
+}
+.p-icon{
+    /*margin: 83px auto 0;*/
+}
+.p-icon img{
+    border-radius: 50%;
+    border: 1px solid #333;
+}
+.p-name{
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+.p-intro{
+    font-size: 12px;
+    color: #afafaf;
+}
+.p-profile{
+    margin-left: 45px;
+    margin-top: 24px;
+    font-size: 14px;
+}
+.p-profile ul{
+
+}
+.p-profile li{
+    float: left;
+    border-right: 1px solid #FFF;
+}
+.p-profile li a{
+    display: block;
+    padding:0 19px;
+
+}
+.p-profile li:last-child{
+    border: none;
+}
+.p-profile li span{
+    display: block;
+}
+.p-following, .p-followed, .p-publish{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+.content{
+    width: 624px;
+    height: 1000px;
+    margin: 16px auto 0;
+}
+/*单个说说*/
+.item{
+    width: 100%;
+    height: 302px;
+    padding: 16px 23px;
+    margin-bottom: 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.u-info{
+    height: 59px;
+    margin-bottom: 23px;
+}
+.u-icon{
+    float: left;
+    margin-right: 14px;
+}
+.u-icon img{
+    border-radius: 50%;
+}
+.name-pub{
+    padding-top: 14px;
+}
+.u-name{
+    font-size: 14px;
+    font-weight: bold;
+}
+.u-pub{
+    font-size: 12px;
+    margin-top: 3px;
+}
+.itemcontent{
+    height: 155px;
+    margin-bottom: 20px;
+}
+.thumbnail{
+    float: left;
+    margin-right: 28px;
+}
+.u-list{
+    font-size: 12px;
+    color: #afafaf;
+}
+.u-list li a{
+    float: left;
+    color: #afafaf;
+    margin-right: 23px;
+}

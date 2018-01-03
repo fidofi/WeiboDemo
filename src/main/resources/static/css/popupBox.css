@@ -1,0 +1,120 @@
+
+.closePrompt{
+    background: transparent;
+    outline: none;
+    position: absolute;
+    right:8px;
+    top:0.8em;
+    color:#fff;
+}
+.closePrompt i{
+    font-size: 12px;
+}
+.PopupBox{
+    width: 500px;
+    height: auto;
+    border-radius: 5px;
+    background: #fff;
+    position: fixed;
+    z-index: 9999;
+    top: 35%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+}
+.PopupBox-title{
+/*     font-size: 12px; */
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px; 
+    background:#0F88EB;
+    color:#fff;
+    font-weight: normal;
+    margin:0;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: left;
+    text-indent:1.5em;  
+    border-bottom: 1px solid #E7E8EC;
+}
+.popupboxContent-btn{
+    margin: 2em auto;
+    height: 40px;
+    width: 345px;
+}
+.popupboxContent-btn button{
+    width: 100%;
+    height: 40px;
+    background:#0F88EB;
+    color:#fff;
+    font-size: 14px;
+    font-weight: 800;
+    border-radius: 5px;
+}
+
+
+
+
+
+/* 修改密码的弹出框内容开始 */
+.left{
+    float:left;
+    text-align: right;
+    width: 38%;
+    font-size:14px; 
+    margin-right: 5px;
+    line-height: 35px;
+    color: #999;
+}
+.pwModiContent{
+    margin-top: 40px;
+}
+.pwModiContent div{
+    margin-bottom:10px;
+}
+.pwModiContent input{
+    text-indent: 1em;
+    outline: none;
+    height: 35px;
+    width: 220px;
+    border:1px solid #ddd;
+}
+.pwModiContent input:focus{
+    box-shadow: 1px 1px 15px #D1D2D6;
+}
+
+/* 修改密码的弹出框内容开始 */
+
+
+
+
+
+/* 分享开始 */
+.snsIcon{
+    text-align: center;
+    padding-top: 2em;
+}
+.snsIcon img{
+    padding:0 1em;
+}
+.snsIcon img:hover{
+    cursor: pointer;
+    transform:scale(1.1);
+    transtion:all .2s;
+}
+.snsIcon .checkedShare{
+    transform:scale(1.1);
+}
+/* 分享结束 */
+
+
+
+
+
+
+
+
+
+
+
+
+

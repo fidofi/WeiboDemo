@@ -1,0 +1,212 @@
+/* 知识广场 */
+.knowledgeSquare{
+    position: relative;
+    height: auto;
+    width: 60%;
+    max-width: 920px;
+    margin:100px auto 20px auto;
+}
+
+.knowledgeSquareWrapper{
+    width: 100%;
+    background:#fff;
+    border:1px solid #aaa;
+    border-radius: 5px;
+    height: auto;
+    position: relative;
+    color: #666;
+    padding-top: 24px;
+    box-sizing: border-box;
+    margin: 40px;
+}
+
+.knowledgeSquareWrapper-title{
+    position: absolute;
+    top:-2em;
+    font-size: 14px;
+    font-weight: normal;
+    color:#666;
+}
+
+.knowledgeSquareWrapper-title a,
+.knowledgeSquareWrapper h4 a{
+    color:#2695EE;
+    text-decoration: none;
+}
+.user-icon{
+    margin:0 1em 0 5%;
+}
+.article-title{
+    display: inline-block;
+    vertical-align: middle;
+}
+.user-editInfo{
+    margin-top: 0.8em;
+    font-size: 12px;
+    color:#888;
+}
+.user-editInfo .user-nickname:hover{
+    cursor: pointer;
+}
+.article-content{
+    overflow: hidden;
+    width: 90%;
+    margin:1em auto 1.8em auto;
+}
+.article-content p{
+    line-height: 1.5;
+    word-wrap: auto;
+}
+/* 文章图片 */
+.article-content-img{
+    position: relative;
+    width: 12em;
+    height: 4.5em;
+    background-image: url(../images/article.jpg);
+    background-position: center;
+    background-size:cover;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    display: inline-block;
+    float: left;
+    margin-right: 1em;
+}
+/* 文章文字 */
+.showAllArticle{
+    color: #0F88EB;
+    text-decoration: none;
+    margin-left: 1em;
+}
+.icon-2{
+    vertical-align: middle;
+}
+.article-operate{
+    border-top: 1px solid #eee;
+    background: #fdfdfa;
+/*     width: 92%; */
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    height: 48px;
+    margin:0 auto;
+    text-align: center;
+}
+.article-operate-item-wrap{
+    width: 32%;
+    display:inline-block;
+}
+.article-operate-item{
+/*     border-top: 1px solid #ccc; */
+    width: 100%;
+    
+    
+}
+.article-operate-item:nth-last-child(3),
+.article-operate-item:nth-last-child(2){
+/*     border-right: 1px solid #ccc; */
+}
+
+.article-operate-item-txt:hover{
+    cursor: pointer;
+}
+.article-operate-item-txt{
+    line-height: 48px;
+    padding-left: 1em;
+}
+.article-operate-item-txt,
+.article-operate-item i{
+    color: #888;
+}
+.article-operate-item span:hover{
+    color: #0F88EB;
+}
+.article-operate-item span:hover>i{
+    color: #0F88EB;
+}
+/* .article-operate-item-txt1{
+    border-right: 1px solid #ccc;
+    padding-right:70%;
+} */
+.hr-line{
+    display: inline-block;
+    width: 1px;
+    background: #ddd;
+    height: 1.2em;
+    vertical-align: middle;
+}
+.icon-pinglun{
+    vertical-align: -1px;
+}
+
+/* 评论开始 */
+.article-comment{
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: #FDFDFA;
+    padding-bottom:1em;
+}
+.article-comment-edit{
+    padding-top: 1em;
+    width: 90%;
+    margin:0 auto;
+}
+.article-comment-edit input{
+    width: 88%;
+    height: 2.5em;
+    border-radius: 5px;
+    border:1px solid #ccc;
+    text-indent: 0.5em;   
+}
+.article-comment-edit-btn{
+    width: 10%;
+    float: right;
+}
+.article-comment-edit-btn button{
+    width: 100%;
+    height: 2.7em;
+    background: #0F88EB;
+    border-radius: 5px;
+    color: #fff;
+}
+.article-comment-edit input:focus{
+    border-color: #fff;
+    box-shadow: 0 0 3px 0px #0F88EB;
+}
+
+
+.article-comment-item{
+    margin: 1em 0;
+    border-top:1px solid #eee;
+    padding-top: 1em;
+}
+.article-comment-item:nth-child(1){
+    border:none;
+}
+.article-comment-usericon{
+    height: 36px;
+    width: 36px;
+    background-image: url(../images/user-icon.png);
+    background-size: cover;
+    display: inline-block;
+}
+.article-comment-usericon:hover{
+    cursor: pointer;
+}
+.article-comment-main{
+    vertical-align: top;
+    display: inline-block;
+}
+.article-comment-user-nickname{
+    color: #555;
+}
+.article-comment-content{
+    padding-top: 0.3em;
+    line-height: 1.5;
+}
+.user-comment-editTime{
+    color: #ccc;
+    padding-top: 0.5em;
+    font-size: 12px;
+}
+/* 评论结束 */
+
+

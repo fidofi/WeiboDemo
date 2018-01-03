@@ -1,0 +1,108 @@
+.settingbox{
+    background: #333;
+    border-radius: 4px;
+    width: 560px;
+    padding:0 40px 0;
+    margin: 173px auto 0;
+    box-shadow: 0px 3px 6px rgba(35, 35, 36, 0.75);
+}
+
+.s-title{
+    font-size: 24px;
+    line-height: 76px;
+}
+.imgbox{
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    width: 140px;
+    height: 140px;
+}
+.txtbox{
+    display: inline-block;
+}
+
+#file{
+    width: inherit;
+    height: inherit;
+    color: red;
+    background: none;
+
+
+}
+#update{
+    width: inherit;
+    height: inherit;
+    padding: 0 10px;
+    color: #000;
+
+}
+
+.icon-bg{
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.4;
+}
+.txt-changeicon{
+    cursor: pointer;
+    position: absolute;
+    top: 61px;
+    left: 34px;
+    font-size: 18px;
+    line-height: 18px;
+}
+.txtbox{
+    margin-left: 26px;
+    margin-bottom: 14px;
+}
+.txtbox>div{
+    margin-bottom: 19px;
+}
+.txtbox label{
+
+    margin-right: 16px;
+}
+.settingbox input, .settingbox select, .settingbox textarea{
+    width: 294px;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    background: #FFF;
+    height: 42px;
+    padding-left: 16px;
+    font-size: 16px;
+}
+.settingbox select{
+    width: 100px;
+}
+.l-sign{
+    position: relative;
+    top: -105px;
+}
+textarea.txt-sign{
+    height: 115px;
+    width: 278px;
+    padding-top: 13px;
+    padding-right: 16px;
+    resize: none;
+    overflow: hidden;
+}
+.s-submit{
+    margin-left: 52px;
+    cursor: pointer;
+    background: #45b10f;
+    border-radius: 4px;
+    font-size: 18px;
+    line-height: 42px;
+    text-align: center;
+    border: none;
+    outline: none;
+    width: 120px;
+    height: 43px;
+    color: #FFF;
+}

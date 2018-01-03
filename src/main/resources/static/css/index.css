@@ -1,0 +1,262 @@
+.main{
+    width: 904px;
+    height: 1000px;
+    margin: 142px auto 0;
+}
+.content{
+    display: inline-block;
+    width: 624px;
+    height: 1000px;
+    float: left;
+}
+
+.item{
+    margin-bottom: 20px;
+}
+/*单个说说*/
+.item-main{
+    width: 100%;
+    height: 302px;
+    padding: 16px 23px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.item-more-ation{
+    position: absolute;
+    right: 0px;
+    padding: 0 4px;
+    cursor: pointer;
+}
+.item-more-ation span{
+    display: block;
+    height: 0;
+    width: 0;
+    border: 9px solid #afafaf;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+}
+.u-info{
+    height: 59px;
+    margin-bottom: 23px;
+    position: relative;
+}
+.u-icon{
+    float: left;
+    margin-right: 14px;
+}
+.u-icon img{
+    border-radius: 50%;
+}
+.name-pub{
+    padding-top: 6px;
+}
+.u-name{
+    font-size: 14px;
+    font-weight: bold;
+}
+.u-pub{
+    font-size: 12px;
+    margin-top: 3px;
+    color: #afafaf;
+}
+.full-text{
+    font-size: 14px;
+}
+
+.itemcontent{
+    height: 155px;
+    margin-bottom: 20px;
+}
+.itemcontent:after{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.thumbnail{
+    float: left;
+    margin-right: 28px;
+}
+.u-list{
+    font-size: 12px;
+    color: #afafaf;
+}
+.u-list li a{
+    float: left;
+    color: #afafaf;
+    margin-right: 23px;
+}
+.u-list li a:hover{
+    color: #ffd000;
+}
+.arrow-warp{
+    position: relative;
+}
+.arrow{
+    position: absolute;
+    bottom: -13px;
+    left: 5px;
+    display: block;
+    height: 0;
+    width: 0;
+    border: 9px solid #4d4d4d;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-right-color: transparent;
+}
+.self-repeat{
+    margin: 17px 0;
+}
+.repeat-inputtxt{
+    float: left;
+    background: #ededef;
+    /*height: 32px;*/
+    width: 437px;
+    padding: 8px 9px;
+    border-radius: 4px;
+    color: black;
+    line-height: 20px;
+    outline-color: #ffd000;
+}
+.repeat-inputtxt-btn{
+    float: right;
+    padding: 0 32px;
+    color: #fff;
+    border-radius: 4px;
+    /*line-height:*/
+    font-size: 16px;
+    background: #0ea351;
+    border: none;
+    height: 36px;
+    cursor: pointer;
+    outline: none;
+}
+.self-repeat:after{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.item-repeat{
+    background: #4d4d4d;
+    padding: 8px 23px;
+    font-size: 12px;
+}
+.repeat-icon{
+    float: left;
+}
+.repeat-content{
+    margin-left: 40px;
+}
+.repeat-content-text{
+    padding-bottom: 4px;
+}
+.repeat-content-text a{
+    color: #ffd000;
+}
+.repeat-time{
+    float: left;
+}
+.repeat-handler{
+    float: right;
+}
+.repeat-content-func{
+    color: #afafaf;
+}
+.repeat-content-func a{
+    color: #afafaf;
+}
+.repeat-content-func:after{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.repeat-list{
+    padding: 8px 0;
+}
+.repeat-list:after{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+/*个人面板*/
+.p-info{
+    border-radius: 4px;
+    background: #333;
+    box-shadow: 0px 3px 6px rgba(35, 35, 36, 0.75);
+    width: 228px;
+    height: 202px;
+    margin-top: 61px;
+    float: right;
+    position: relative;
+    text-align: center;
+}
+.p-icon{
+    position: absolute;
+    top: -52px;
+    margin-left: 61px;
+    z-index: 1;
+}
+.p-icon img{
+    border-radius: 50%;
+    border: 1px solid #333;
+}
+.p-name{
+    margin-top: 68px;
+    font-size: 24px;
+    font-weight: bold;
+}
+.p-intro{
+    font-size: 12px;
+    color: #afafaf;
+}
+.p-profile{
+    margin-left: 15px;
+    margin-top: 24px;
+    font-size: 14px;
+}
+.p-profile li{
+    float: left;
+    border-right: 1px solid #FFF;
+}
+.p-profile li a{
+    display: block;
+    padding:0 19px;
+}
+.p-profile li:last-child{
+    border: none;
+}
+.p-profile li span{
+    display: block;
+}
+.p-following, .p-followed, .p-publish{
+    font-size: 18px;
+    font-weight: bold;
+}
+/**上传图片的按钮样式*/
+
+
+/*#gotop{
+    display: block;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 53px;
+    height: 53px;
+    border-radius: 4px;
+    background: #939393;
+    letter-spacing: 2px;
+    padding: 9px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 24px;
+}*/

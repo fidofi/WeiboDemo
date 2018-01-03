@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fidofi.dao.UserMapper">
+    <resultMap id="BaseResultMap" type="com.fidofi.entity.User">
+        <constructor>
+            <idArg column="userName" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="userPassword" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="userSalt" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="userBrief" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="userSex" javaType="java.lang.Boolean" jdbcType="BIT"/>
+            <arg column="userPhoto" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </constructor>
+    </resultMap>
+    <resultMap type="com.fidofi.entity.User" id="userList">
+        <result column="userName" property="username"/>
+        <result column="userPassword"  property="userpassword"/>
+        <result column="userBrief"  property="userbrief"/>
+        <result column="userSalt" property="usersalt"/>
+        <result column="userSex" property="usersex"/>
+        <result column="userPhoto"  property="userphoto"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    userName, userPassword, userSalt, userBrief, userSex, userPhoto
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where userName = #{username,jdbcType=VARCHAR}
+    </select>
+
+    <select id="login" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where userName = #{username,jdbcType=VARCHAR} and userPassword= #{userpassword,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByUsername" parameterType="java.lang.String" resultMap="userList">
+        select
+        userName,userBrief,userSex,userPhoto
+        from user
+        where userName like '%${username}%'
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user
+    where userName = #{username,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.fidofi.entity.User">
+    insert into user (userName, userPassword, userSalt, 
+      userBrief, userSex, userPhoto
+      )
+    values (#{username,jdbcType=VARCHAR}, #{userpassword,jdbcType=VARCHAR}, #{usersalt,jdbcType=VARCHAR}, 
+      #{userbrief,jdbcType=VARCHAR}, #{usersex,jdbcType=BIT}, #{userphoto,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.fidofi.entity.User">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null">
+                userName,
+            </if>
+            <if test="userpassword != null">
+                userPassword,
+            </if>
+            <if test="usersalt != null">
+                userSalt,
+            </if>
+            <if test="userbrief != null">
+                userBrief,
+            </if>
+            <if test="usersex != null">
+                userSex,
+            </if>
+            <if test="userphoto != null">
+                userPhoto,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="userpassword != null">
+                #{userpassword,jdbcType=VARCHAR},
+            </if>
+            <if test="usersalt != null">
+                #{usersalt,jdbcType=VARCHAR},
+            </if>
+            <if test="userbrief != null">
+                #{userbrief,jdbcType=VARCHAR},
+            </if>
+            <if test="usersex != null">
+                #{usersex,jdbcType=BIT},
+            </if>
+            <if test="userphoto != null">
+                #{userphoto,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.fidofi.entity.User">
+        update user
+        <set>
+            <if test="userpassword != null">
+                userPassword = #{userpassword,jdbcType=VARCHAR},
+            </if>
+            <if test="usersalt != null">
+                userSalt = #{usersalt,jdbcType=VARCHAR},
+            </if>
+            <if test="userbrief != null">
+                userBrief = #{userbrief,jdbcType=VARCHAR},
+            </if>
+            <if test="usersex != null">
+                userSex = #{usersex,jdbcType=BIT},
+            </if>
+            <if test="userphoto != null">
+                userPhoto = #{userphoto,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where userName = #{username,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.fidofi.entity.User">
+    update user
+    set userPassword = #{userpassword,jdbcType=VARCHAR},
+      userSalt = #{usersalt,jdbcType=VARCHAR},
+      userBrief = #{userbrief,jdbcType=VARCHAR},
+      userSex = #{usersex,jdbcType=BIT},
+      userPhoto = #{userphoto,jdbcType=VARCHAR}
+    where userName = #{username,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fidofi.dao.RelayMapper">
+  <resultMap id="BaseResultMap" type="com.fidofi.entity.Relay">
+    <constructor>
+      <idArg column="relayId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="userName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="newsId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="relayText" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="relayStatus" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="relayTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    relayId, userName, newsId, relayText, relayStatus, relayTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from relay
+    where relayId = #{relayid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from relay
+    where relayId = #{relayid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fidofi.entity.Relay">
+    insert into relay (relayId, userName, newsId, 
+      relayText, relayStatus, relayTime
+      )
+    values (#{relayid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{newsid,jdbcType=INTEGER}, 
+      #{relaytext,jdbcType=VARCHAR}, #{relaystatus,jdbcType=BIT}, #{relaytime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fidofi.entity.Relay">
+    insert into relay
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="relayid != null">
+        relayId,
+      </if>
+      <if test="username != null">
+        userName,
+      </if>
+      <if test="newsid != null">
+        newsId,
+      </if>
+      <if test="relaytext != null">
+        relayText,
+      </if>
+      <if test="relaystatus != null">
+        relayStatus,
+      </if>
+      <if test="relaytime != null">
+        relayTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="relayid != null">
+        #{relayid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="newsid != null">
+        #{newsid,jdbcType=INTEGER},
+      </if>
+      <if test="relaytext != null">
+        #{relaytext,jdbcType=VARCHAR},
+      </if>
+      <if test="relaystatus != null">
+        #{relaystatus,jdbcType=BIT},
+      </if>
+      <if test="relaytime != null">
+        #{relaytime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fidofi.entity.Relay">
+    update relay
+    <set>
+      <if test="username != null">
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="newsid != null">
+        newsId = #{newsid,jdbcType=INTEGER},
+      </if>
+      <if test="relaytext != null">
+        relayText = #{relaytext,jdbcType=VARCHAR},
+      </if>
+      <if test="relaystatus != null">
+        relayStatus = #{relaystatus,jdbcType=BIT},
+      </if>
+      <if test="relaytime != null">
+        relayTime = #{relaytime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where relayId = #{relayid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fidofi.entity.Relay">
+    update relay
+    set userName = #{username,jdbcType=VARCHAR},
+      newsId = #{newsid,jdbcType=INTEGER},
+      relayText = #{relaytext,jdbcType=VARCHAR},
+      relayStatus = #{relaystatus,jdbcType=BIT},
+      relayTime = #{relaytime,jdbcType=TIMESTAMP}
+    where relayId = #{relayid,jdbcType=INTEGER}
+  </update>
+</mapper>

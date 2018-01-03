@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fidofi.dao.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.fidofi.entity.Comment">
+    <constructor>
+      <idArg column="commentId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="userName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="newsId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="commentText" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="commentStatus" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="commentTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    commentId, userName, newsId, commentText, commentStatus, commentTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where commentId = #{commentid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from comment
+    where commentId = #{commentid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fidofi.entity.Comment">
+    insert into comment (commentId, userName, newsId, 
+      commentText, commentStatus, commentTime
+      )
+    values (#{commentid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{newsid,jdbcType=INTEGER}, 
+      #{commenttext,jdbcType=VARCHAR}, #{commentstatus,jdbcType=BIT}, #{commenttime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fidofi.entity.Comment">
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commentid != null">
+        commentId,
+      </if>
+      <if test="username != null">
+        userName,
+      </if>
+      <if test="newsid != null">
+        newsId,
+      </if>
+      <if test="commenttext != null">
+        commentText,
+      </if>
+      <if test="commentstatus != null">
+        commentStatus,
+      </if>
+      <if test="commenttime != null">
+        commentTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="commentid != null">
+        #{commentid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="newsid != null">
+        #{newsid,jdbcType=INTEGER},
+      </if>
+      <if test="commenttext != null">
+        #{commenttext,jdbcType=VARCHAR},
+      </if>
+      <if test="commentstatus != null">
+        #{commentstatus,jdbcType=BIT},
+      </if>
+      <if test="commenttime != null">
+        #{commenttime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fidofi.entity.Comment">
+    update comment
+    <set>
+      <if test="username != null">
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="newsid != null">
+        newsId = #{newsid,jdbcType=INTEGER},
+      </if>
+      <if test="commenttext != null">
+        commentText = #{commenttext,jdbcType=VARCHAR},
+      </if>
+      <if test="commentstatus != null">
+        commentStatus = #{commentstatus,jdbcType=BIT},
+      </if>
+      <if test="commenttime != null">
+        commentTime = #{commenttime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where commentId = #{commentid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fidofi.entity.Comment">
+    update comment
+    set userName = #{username,jdbcType=VARCHAR},
+      newsId = #{newsid,jdbcType=INTEGER},
+      commentText = #{commenttext,jdbcType=VARCHAR},
+      commentStatus = #{commentstatus,jdbcType=BIT},
+      commentTime = #{commenttime,jdbcType=TIMESTAMP}
+    where commentId = #{commentid,jdbcType=INTEGER}
+  </update>
+</mapper>

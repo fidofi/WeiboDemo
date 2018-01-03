@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fidofi.dao.RelationMapper">
+    <resultMap id="BaseResultMap" type="com.fidofi.entity.Relation">
+        <constructor>
+            <idArg column="firstUser" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <idArg column="secondeUser" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="relationStatus" javaType="java.lang.Boolean" jdbcType="BIT"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    firstUser, secondeUser, relationStatus
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="com.fidofi.entity.RelationKey" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from relation
+        where firstUser = #{firstuser,jdbcType=VARCHAR}
+        and secondeUser = #{secondeuser,jdbcType=VARCHAR} or firstUser = #{secondeuser,jdbcType=VARCHAR}
+        and secondeUser = #{firstuser,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="com.fidofi.entity.RelationKey">
+    delete from relation
+    where firstUser = #{firstuser,jdbcType=VARCHAR}
+      and secondeUser = #{secondeuser,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.fidofi.entity.Relation">
+    insert into relation (firstUser, secondeUser, relationStatus
+      )
+    values (#{firstuser,jdbcType=VARCHAR}, #{secondeuser,jdbcType=VARCHAR}, #{relationstatus,jdbcType=BIT}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.fidofi.entity.Relation">
+        insert into relation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="firstuser != null">
+                firstUser,
+            </if>
+            <if test="secondeuser != null">
+                secondeUser,
+            </if>
+            <if test="relationstatus != null">
+                relationStatus,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="firstuser != null">
+                #{firstuser,jdbcType=VARCHAR},
+            </if>
+            <if test="secondeuser != null">
+                #{secondeuser,jdbcType=VARCHAR},
+            </if>
+            <if test="relationstatus != null">
+                #{relationstatus,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.fidofi.entity.Relation">
+        update relation
+        <set>
+            <if test="relationstatus != null">
+                relationStatus = #{relationstatus,jdbcType=BIT},
+            </if>
+        </set>
+        where firstUser = #{firstuser,jdbcType=VARCHAR}
+        and secondeUser = #{secondeuser,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.fidofi.entity.Relation">
+    update relation
+    set relationStatus = #{relationstatus,jdbcType=BIT}
+    where firstUser = #{firstuser,jdbcType=VARCHAR}
+      and secondeUser = #{secondeuser,jdbcType=VARCHAR}
+  </update>
+    <select id="getFans" parameterType="java.lang.String">
+
+    </select>
+    <select id="getFollowers" parameterType="java.lang.String" resultMap="java.lang.String">
+       
+    </select>
+
+
+</mapper>
