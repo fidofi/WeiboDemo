@@ -33,14 +33,16 @@
                         <p>${u.user.userbrief}</p>
                     </div>
                     <div>
-                       <c:choose>
-                           <c:when test="${u.follow}">
-                               <button name="username">已关注</button>
-                           </c:when>
-                           <c:otherwise>
-                               <button name="username" onclick="follow(${u.user.username})">关注</button>
-                           </c:otherwise>
-                       </c:choose>
+                        <c:choose>
+                            <c:when test="${u.follow}">
+                                <button name="username" style="margin-left: 20px">已关注</button>
+                            </c:when>
+                            <c:otherwise>
+                                <button name="username" onclick="follow('${u.user.username}')"
+                                        style="margin-left: 20px">关注
+                                </button>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </li>
             </c:forEach>
