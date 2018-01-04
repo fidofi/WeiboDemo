@@ -17,6 +17,14 @@
         from relation
         where firstUser = #{firstuser,jdbcType=VARCHAR}
         and secondeUser = #{secondeuser,jdbcType=VARCHAR} or firstUser = #{secondeuser,jdbcType=VARCHAR}
+        and secondeUser = #{firstuser,jdbcType=VARCHAR} and relationStatus=TRUE
+    </select>
+    <select id="findRelationByTwo" parameterType="com.fidofi.entity.RelationKey" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from relation
+        where firstUser = #{firstuser,jdbcType=VARCHAR}
+        and secondeUser = #{secondeuser,jdbcType=VARCHAR} or firstUser = #{secondeuser,jdbcType=VARCHAR}
         and secondeUser = #{firstuser,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="com.fidofi.entity.RelationKey">
@@ -71,12 +79,27 @@
     where firstUser = #{firstuser,jdbcType=VARCHAR}
       and secondeUser = #{secondeuser,jdbcType=VARCHAR}
   </update>
-    <select id="getFans" parameterType="java.lang.String">
-
+    <select id="getFans" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from relation WHERE secondeUser =#{username} OR firstUser=#{username} AND relationStatus=TRUE;
     </select>
-    <select id="getFollowers" parameterType="java.lang.String" resultMap="java.lang.String">
-       
+    <select id="getFollowers" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from relation WHERE firstUser =#{username} OR secondeUser=#{username} AND relationStatus=TRUE;
     </select>
+    <update id="follow" parameterType="com.fidofi.entity.Relation">
+        update relation
+        set relationStatus = true
+        where firstUser = #{firstuser,jdbcType=VARCHAR}
+        and secondeUser = #{secondeuser,jdbcType=VARCHAR}
+    </update>
 
-
+    <update id="unfollow" parameterType="com.fidofi.entity.Relation">
+        update relation
+        set relationStatus = false
+        where firstUser = #{firstuser,jdbcType=VARCHAR}
+        and secondeUser = #{secondeuser,jdbcType=VARCHAR}
+    </update>
 </mapper>

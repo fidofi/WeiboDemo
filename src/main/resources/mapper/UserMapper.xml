@@ -42,6 +42,12 @@
         from user
         where userName like '%${username}%'
     </select>
+    <select id="selectByUsername" parameterType="java.lang.String" resultMap="com.fidofi.entity.User">
+        select
+        userName,userBrief,userSex,userPhoto
+        from user
+        where userName like #{username,jdbcType=VARCHAR}
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from user
     where userName = #{username,jdbcType=VARCHAR}

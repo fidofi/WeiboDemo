@@ -19,4 +19,12 @@ public class Relation extends RelationKey {
     public void setRelationstatus(Boolean relationstatus) {
         this.relationstatus = relationstatus;
     }
+
+    @Override
+    public String toString() {
+        return "Relation{" +
+                "relationstatus=" + relationstatus +
+                "firstUser"+this.getFirstuser()+"secondeUser"+this.getSecondeuser()+
+                '}';
+    }
 }

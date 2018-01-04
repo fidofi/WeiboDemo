@@ -20,13 +20,14 @@ public interface RelationMapper {
 
     int updateByPrimaryKey(Relation record);
 
-    List<String> getFans(String username);
+    List<Relation> getFans(String username);
 
-    List<String> getFollowers(String username);
+    List<Relation> getFollowers(String username);
 
     int follow(RelationKey key);
 
     int unfollow(RelationKey key);
 
-    int unfriend(RelationKey key);
+    Relation findRelationByTwo(RelationKey key);
+    
 }
