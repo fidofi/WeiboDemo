@@ -3,10 +3,7 @@ package com.fidofi.service.impl;
 import com.fidofi.VO.NewsAndeUser;
 import com.fidofi.VO.ResultVO;
 import com.fidofi.VO.SearchUser;
-import com.fidofi.dao.NewsMapper;
-import com.fidofi.dao.RelationMapper;
-import com.fidofi.dao.UserFreezeMapper;
-import com.fidofi.dao.UserMapper;
+import com.fidofi.dao.*;
 import com.fidofi.entity.News;
 import com.fidofi.entity.Relation;
 import com.fidofi.entity.RelationKey;
@@ -38,6 +35,9 @@ public class SearchServiceImpl implements SearchService {
     @Autowired
     private RelationMapper relationMapper;
 
+    @Autowired
+    private CommentMapper commentMapper;
+
 
     @Override
     public ResultVO<Map<String, Object>> search(String search, String username) {
@@ -58,7 +58,7 @@ public class SearchServiceImpl implements SearchService {
                     SearchUser searchUser = new SearchUser(user, true);
                     searchUsers.add(searchUser);
                 } else {
-                    SearchUser searchUser = new SearchUser(user, false);
+                    SearchUser searchUser = new SearchUser(user, true);
                     searchUsers.add(searchUser);
                 }
             }
@@ -73,6 +73,7 @@ public class SearchServiceImpl implements SearchService {
                 BeanUtils.copyProperties(news, newsAndeUser);
                 User user = userMapper.selectByPrimaryKey(news.getUsername());
                 newsAndeUser.setUser(user);
+                newsAndeUser.setCommentList(commentMapper.selectByNewsId(news.getNewsid()));
                 newsAndeUsers.add(newsAndeUser);
             }
             map.put("newsList", newsAndeUsers);

@@ -11,15 +11,15 @@ public class News {
 
     private String username;
 
-    private Integer newscomment;
+    private int newscomment;
 
-    private Integer newsrelay;
+    private int newsrelay;
 
-    private Integer newslike;
+    private int newslike;
 
     private Date newstime;
 
-    private Boolean newsstatus;
+    private boolean newsstatus;
 
     public News(Integer newsid, String newstext, String newsphoto, String username, Integer newscomment, Integer newsrelay, Integer newslike, Date newstime, Boolean newsstatus) {
         this.newsid = newsid;
@@ -107,5 +107,20 @@ public class News {
 
     public void setNewsstatus(Boolean newsstatus) {
         this.newsstatus = newsstatus;
+    }
+
+    @Override
+    public String toString() {
+        return "News{" +
+                "newsid=" + newsid +
+                ", newstext='" + newstext + '\'' +
+                ", newsphoto='" + newsphoto + '\'' +
+                ", username='" + username + '\'' +
+                ", newscomment=" + newscomment +
+                ", newsrelay=" + newsrelay +
+                ", newslike=" + newslike +
+                ", newstime=" + newstime +
+                ", newsstatus=" + newsstatus +
+                '}';
     }
 }

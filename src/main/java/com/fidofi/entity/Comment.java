@@ -11,7 +11,7 @@ public class Comment {
 
     private String commenttext;
 
-    private Boolean commentstatus;
+    private boolean commentstatus;
 
     private Date commenttime;
 
@@ -74,5 +74,17 @@ public class Comment {
 
     public void setCommenttime(Date commenttime) {
         this.commenttime = commenttime;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "commentid=" + commentid +
+                ", username='" + username + '\'' +
+                ", newsid=" + newsid +
+                ", commenttext='" + commenttext + '\'' +
+                ", commentstatus=" + commentstatus +
+                ", commenttime=" + commenttime +
+                '}';
     }
 }

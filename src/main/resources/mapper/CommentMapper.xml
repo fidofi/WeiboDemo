@@ -15,7 +15,7 @@
     commentId, userName, newsId, commentText, commentStatus, commentTime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from comment
     where commentId = #{commentid,jdbcType=INTEGER}
@@ -25,10 +25,10 @@
     where commentId = #{commentid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.fidofi.entity.Comment">
-    insert into comment (commentId, userName, newsId, 
+    insert into comment (commentId, userName, newsId,
       commentText, commentStatus, commentTime
       )
-    values (#{commentid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{newsid,jdbcType=INTEGER}, 
+    values (#{commentid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{newsid,jdbcType=INTEGER},
       #{commenttext,jdbcType=VARCHAR}, #{commentstatus,jdbcType=BIT}, #{commenttime,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -105,4 +105,22 @@
       commentTime = #{commenttime,jdbcType=TIMESTAMP}
     where commentId = #{commentid,jdbcType=INTEGER}
   </update>
+  <select id="getCommentNum" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select
+    count(*)
+    from comment
+    where newsId = #{newsId,jdbcType=INTEGER}
+  </select>
+  <select id="getUnRead" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from comment
+    where newsId = #{newsId,jdbcType=INTEGER} and commentStatus=FALSE order by commentTime desc
+  </select>
+  <select id="selectByNewsId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from comment
+    where newsId = #{newsId,jdbcType=INTEGER} order by commentTime desc
+  </select>
 </mapper>

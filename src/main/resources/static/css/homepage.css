@@ -65,15 +65,15 @@
     margin: 16px auto 0;
 }
 /*单个说说*/
-.item{
-    width: 100%;
-    height: 302px;
-    padding: 16px 23px;
-    margin-bottom: 20px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
+/*.item{*/
+    /*width: 100%;*/
+    /*height: 302px;*/
+    /*padding: 16px 23px;*/
+    /*margin-bottom: 20px;*/
+    /*-webkit-box-sizing: border-box;*/
+    /*-moz-box-sizing: border-box;*/
+    /*box-sizing: border-box;*/
+/*}*/
 .u-info{
     height: 59px;
     margin-bottom: 23px;
@@ -112,4 +112,111 @@
     float: left;
     color: #afafaf;
     margin-right: 23px;
+}
+.repeat-inputtxt{
+    float: left;
+    background: #ededef;
+    /*height: 32px;*/
+    width: 437px;
+    padding: 8px 9px;
+    border-radius: 4px;
+    color: black;
+    line-height: 20px;
+    outline-color: #ffd000;
+}
+.repeat-inputtxt-btn{
+    float: right;
+    padding: 0 32px;
+    color: #fff;
+    border-radius: 4px;
+    /*line-height:*/
+    font-size: 16px;
+    background: #0ea351;
+    border: none;
+    height: 36px;
+    cursor: pointer;
+    outline: none;
+}
+.self-repeat:after{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.item-repeat{
+    background: #4d4d4d;
+    padding: 8px 23px;
+    font-size: 12px;
+}
+.repeat-icon{
+    float: left;
+}
+.repeat-content{
+    margin-left: 40px;
+}
+.repeat-content-text{
+    padding-bottom: 4px;
+}
+.repeat-content-text a{
+    color: #ffd000;
+}
+.repeat-time{
+    float: left;
+}
+.repeat-handler{
+    float: right;
+}
+.repeat-content-func{
+    color: #afafaf;
+}
+.repeat-content-func a{
+    color: #afafaf;
+}
+.repeat-content-func:after{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.repeat-list{
+    padding: 8px 0;
+}
+.repeat-list:after{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.main{
+    width: 904px;
+    height: 1000px;
+    margin: 142px auto 0;
+}
+.item{
+    margin-bottom: 20px;
+}
+/*单个说说*/
+.item-main{
+    width: 100%;
+    height: 302px;
+    padding: 16px 23px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.item-more-ation{
+    position: absolute;
+    right: 0px;
+    padding: 0 4px;
+    cursor: pointer;
+}
+.self-repeat:after{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
 }

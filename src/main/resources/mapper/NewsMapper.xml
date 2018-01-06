@@ -1,163 +1,189 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fidofi.dao.NewsMapper">
-    <resultMap id="BaseResultMap" type="com.fidofi.entity.News">
-        <constructor>
-            <idArg column="newsId" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-            <arg column="newsText" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="newsPhoto" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="userName" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <arg column="newsComment" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-            <arg column="newsRelay" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-            <arg column="newsLike" javaType="java.lang.Integer" jdbcType="INTEGER"/>
-            <arg column="newsTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
-            <arg column="newsStatus" javaType="java.lang.Boolean" jdbcType="BIT"/>
-        </constructor>
-    </resultMap>
+<resultMap id="BaseResultMap" type="com.fidofi.entity.News">
+    <constructor>
+        <idArg column="newsId" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <arg column="newsText" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <arg column="newsPhoto" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <arg column="userName" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <arg column="newsComment" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <arg column="newsRelay" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <arg column="newsLike" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <arg column="newsTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <arg column="newsStatus" javaType="java.lang.Boolean" jdbcType="BIT"/>
+    </constructor>
+</resultMap>
 
-    <resultMap type="com.fidofi.entity.News" id="newsList">
-        <result column="newsId" property="newsid"/>
-        <result column="newsText" property="newstext"/>
-        <result column="newsPhoto" property="newsphoto"/>
-        <result column="userName" property="username"/>
-        <result column="newsComment" property="newscomment"/>
-        <result column="newsRelay" property="newsrelay"/>
-        <result column="newsLike" property="newslike"/>
-        <result column="newsTime" property="newstime"/>
-        <result column="newsStatus" property="newsstatus"/>
-    </resultMap>
+<resultMap type="com.fidofi.entity.News" id="newsList">
+    <result column="newsId" property="newsid"/>
+    <result column="newsText" property="newstext"/>
+    <result column="newsPhoto" property="newsphoto"/>
+    <result column="userName" property="username"/>
+    <result column="newsComment" property="newscomment"/>
+    <result column="newsRelay" property="newsrelay"/>
+    <result column="newsLike" property="newslike"/>
+    <result column="newsTime" property="newstime"/>
+    <result column="newsStatus" property="newsstatus"/>
+</resultMap>
 
-    <sql id="Base_Column_List">
-    newsId, newsText, newsPhoto, userName, newsComment, newsRelay, newsLike, newsTime, 
+<sql id="Base_Column_List">
+    newsId, newsText, newsPhoto, userName, newsComment, newsRelay, newsLike, newsTime,
     newsStatus
-  </sql>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from news
-        where newsId = #{newsid,jdbcType=INTEGER}
-    </select>
-    <select id="selectByNewstext" parameterType="java.lang.String" resultMap="newsList">
-        select
-        <include refid="Base_Column_List"/>
-        from news
-        where newsText like '%${newstext}%' and newsStatus=true
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+</sql>
+<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from news
+    where newsId = #{newsid,jdbcType=INTEGER}
+</select>
+<select id="selectByNewstext" parameterType="java.lang.String" resultMap="newsList">
+    select
+    <include refid="Base_Column_List"/>
+    from news
+    where newsText like '%${newstext}%' and newsStatus=true
+</select>
+<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from news
     where newsId = #{newsid,jdbcType=INTEGER}
-  </delete>
-    <insert id="insert" parameterType="com.fidofi.entity.News">
-    insert into news (newsId, newsText, newsPhoto, 
-      userName, newsComment, newsRelay, 
-      newsLike, newsTime, newsStatus
-      )
-    values (#{newsid,jdbcType=INTEGER}, #{newstext,jdbcType=VARCHAR}, #{newsphoto,jdbcType=VARCHAR}, 
-      #{username,jdbcType=VARCHAR}, 0, 0,
-      0, #{newstime,jdbcType=TIMESTAMP}, true
-      )
-  </insert>
-    <insert id="insertSelective" parameterType="com.fidofi.entity.News">
-        insert into news
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="newsid != null">
-                newsId,
-            </if>
-            <if test="newstext != null">
-                newsText,
-            </if>
-            <if test="newsphoto != null">
-                newsPhoto,
-            </if>
-            <if test="username != null">
-                userName,
-            </if>
-            <if test="newscomment != null">
-                newsComment,
-            </if>
-            <if test="newsrelay != null">
-                newsRelay,
-            </if>
-            <if test="newslike != null">
-                newsLike,
-            </if>
-            <if test="newstime != null">
-                newsTime,
-            </if>
-            <if test="newsstatus != null">
-                newsStatus,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="newsid != null">
-                #{newsid,jdbcType=INTEGER},
-            </if>
-            <if test="newstext != null">
-                #{newstext,jdbcType=VARCHAR},
-            </if>
-            <if test="newsphoto != null">
-                #{newsphoto,jdbcType=VARCHAR},
-            </if>
-            <if test="username != null">
-                #{username,jdbcType=VARCHAR},
-            </if>
-            <if test="newscomment != null">
-                #{newscomment,jdbcType=INTEGER},
-            </if>
-            <if test="newsrelay != null">
-                #{newsrelay,jdbcType=INTEGER},
-            </if>
-            <if test="newslike != null">
-                #{newslike,jdbcType=INTEGER},
-            </if>
-            <if test="newstime != null">
-                #{newstime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="newsstatus != null">
-                #{newsstatus,jdbcType=BIT},
-            </if>
-        </trim>
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.fidofi.entity.News">
-        update news
-        <set>
-            <if test="newstext != null">
-                newsText = #{newstext,jdbcType=VARCHAR},
-            </if>
-            <if test="newsphoto != null">
-                newsPhoto = #{newsphoto,jdbcType=VARCHAR},
-            </if>
-            <if test="username != null">
-                userName = #{username,jdbcType=VARCHAR},
-            </if>
-            <if test="newscomment != null">
-                newsComment = #{newscomment,jdbcType=INTEGER},
-            </if>
-            <if test="newsrelay != null">
-                newsRelay = #{newsrelay,jdbcType=INTEGER},
-            </if>
-            <if test="newslike != null">
-                newsLike = #{newslike,jdbcType=INTEGER},
-            </if>
-            <if test="newstime != null">
-                newsTime = #{newstime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="newsstatus != null">
-                newsStatus = #{newsstatus,jdbcType=BIT},
-            </if>
-        </set>
-        where newsId = #{newsid,jdbcType=INTEGER}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="com.fidofi.entity.News">
+</delete>
+<insert id="insert" parameterType="com.fidofi.entity.News">
+    insert into news (newsId, newsText, newsPhoto,
+    userName, newsComment, newsRelay,
+    newsLike, newsTime, newsStatus
+    )
+    values (#{newsid,jdbcType=INTEGER}, #{newstext,jdbcType=VARCHAR}, #{newsphoto,jdbcType=VARCHAR},
+    #{username,jdbcType=VARCHAR}, 0, 0,
+    0, #{newstime,jdbcType=TIMESTAMP}, true
+    )
+</insert>
+<insert id="insertSelective" parameterType="com.fidofi.entity.News">
+    insert into news
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="newsid != null">
+            newsId,
+        </if>
+        <if test="newstext != null">
+            newsText,
+        </if>
+        <if test="newsphoto != null">
+            newsPhoto,
+        </if>
+        <if test="username != null">
+            userName,
+        </if>
+        <if test="newscomment != null">
+            newsComment,
+        </if>
+        <if test="newsrelay != null">
+            newsRelay,
+        </if>
+        <if test="newslike != null">
+            newsLike,
+        </if>
+        <if test="newstime != null">
+            newsTime,
+        </if>
+        <if test="newsstatus != null">
+            newsStatus,
+        </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="newsid != null">
+            #{newsid,jdbcType=INTEGER},
+        </if>
+        <if test="newstext != null">
+            #{newstext,jdbcType=VARCHAR},
+        </if>
+        <if test="newsphoto != null">
+            #{newsphoto,jdbcType=VARCHAR},
+        </if>
+        <if test="username != null">
+            #{username,jdbcType=VARCHAR},
+        </if>
+        <if test="newscomment != null">
+            #{newscomment,jdbcType=INTEGER},
+        </if>
+        <if test="newsrelay != null">
+            #{newsrelay,jdbcType=INTEGER},
+        </if>
+        <if test="newslike != null">
+            #{newslike,jdbcType=INTEGER},
+        </if>
+        <if test="newstime != null">
+            #{newstime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="newsstatus != null">
+            #{newsstatus,jdbcType=BIT},
+        </if>
+    </trim>
+</insert>
+<update id="updateByPrimaryKeySelective" parameterType="com.fidofi.entity.News">
+    update news
+    <set>
+        <if test="newstext != null">
+            newsText = #{newstext,jdbcType=VARCHAR},
+        </if>
+        <if test="newsphoto != null">
+            newsPhoto = #{newsphoto,jdbcType=VARCHAR},
+        </if>
+        <if test="username != null">
+            userName = #{username,jdbcType=VARCHAR},
+        </if>
+        <if test="newscomment != null">
+            newsComment = #{newscomment,jdbcType=INTEGER},
+        </if>
+        <if test="newsrelay != null">
+            newsRelay = #{newsrelay,jdbcType=INTEGER},
+        </if>
+        <if test="newslike != null">
+            newsLike = #{newslike,jdbcType=INTEGER},
+        </if>
+        <if test="newstime != null">
+            newsTime = #{newstime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="newsstatus != null">
+            newsStatus = #{newsstatus,jdbcType=BIT},
+        </if>
+    </set>
+    where newsId = #{newsid,jdbcType=INTEGER}
+</update>
+<update id="updateByPrimaryKey" parameterType="com.fidofi.entity.News">
     update news
     set newsText = #{newstext,jdbcType=VARCHAR},
-      newsPhoto = #{newsphoto,jdbcType=VARCHAR},
-      userName = #{username,jdbcType=VARCHAR},
-      newsComment = #{newscomment,jdbcType=INTEGER},
-      newsRelay = #{newsrelay,jdbcType=INTEGER},
-      newsLike = #{newslike,jdbcType=INTEGER},
-      newsTime = #{newstime,jdbcType=TIMESTAMP},
-      newsStatus = #{newsstatus,jdbcType=BIT}
+    newsPhoto = #{newsphoto,jdbcType=VARCHAR},
+    userName = #{username,jdbcType=VARCHAR},
+    newsComment = #{newscomment,jdbcType=INTEGER},
+    newsRelay = #{newsrelay,jdbcType=INTEGER},
+    newsLike = #{newslike,jdbcType=INTEGER},
+    newsTime = #{newstime,jdbcType=TIMESTAMP},
+    newsStatus = #{newsstatus,jdbcType=BIT}
     where newsId = #{newsid,jdbcType=INTEGER}
-  </update>
+</update>
+<select id="selectByUser" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from news
+    where userName = #{userName,jdbcType=VARCHAR}
+</select>
+<update id="createRelay" parameterType="java.lang.Integer">
+    update news
+    set newsRelay=newsRelay+1
+    where newsId = #{newsId,jdbcType=INTEGER}
+</update>
+<update id="deleteRelay" parameterType="java.lang.Integer">
+    update news
+    set newsRelay=newsRelay-1
+    where newsId = #{newsId,jdbcType=INTEGER}
+</update>
+<update id="createComment" parameterType="java.lang.Integer">
+    update news
+    set newsComment=newsComment+1
+    where newsId = #{newsId,jdbcType=INTEGER}
+</update>
+<update id="deleteComment" parameterType="java.lang.Integer">
+    update news
+    set newsComment=newsComment-1
+    where newsId = #{newsId,jdbcType=INTEGER}
+</update>
 </mapper>

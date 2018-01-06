@@ -20,29 +20,29 @@
 </head>
 <body>
 <section class="featureShow_Wrapper">
-    <h4 class="featureShow_breadcrumb"><a href="/user/">返回主页</a></h4>
+    <h4 class="featureShow_breadcrumb"><a href="/user/index">返回主页</a></h4>
     <div class="featureShow_content">
         <ul>
             <c:forEach items="${userList}" var="u">
                 <li class="featureItem">
-                    <a href="#">
-                        <img src="/photo/fidofi/20180103231389.jpg" width="50px" height="50px" class="imgWrap">
-                    </a>
-                    <div>
+                    <a href="#" style="text-decoration:none"; >
+                         <img src="/photo/fidofi/20180103231389.jpg" width="50px" height="50px" class="imgWrap">
                         <h4>${u.user.username}</h4>
-                        <p>${u.user.userbrief}</p>
-                    </div>
+                    </a>
                     <div>
                         <c:choose>
                             <c:when test="${u.follow}">
-                                <button name="username" style="margin-left: 20px">已关注</button>
+                                <button name="username">已关注</button>
                             </c:when>
                             <c:otherwise>
                                 <button name="username" onclick="follow('${u.user.username}')"
-                                        style="margin-left: 20px">关注
+                                >关注
                                 </button>
                             </c:otherwise>
                         </c:choose>
+                        <p>${u.user.userbrief}dsfsdfsfsfds</p>
+                    </div>
+                    <div>
                     </div>
                 </li>
             </c:forEach>

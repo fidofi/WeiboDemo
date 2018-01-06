@@ -17,10 +17,21 @@ public interface NewsMapper {
 
     News selectByPrimaryKey(Integer newsid);
 
-
     List<News> selectByNewstext(@Param("newstext") String newstext);
 
     int updateByPrimaryKeySelective(News record);
 
     int updateByPrimaryKey(News record);
+
+    List<News> selectByUser(String userName);
+
+    int createRelay(Integer newsId);
+
+    int deleteRelay(Integer newsId);
+
+    int createComment(Integer newsId);
+
+    int delteComment(Integer newsId);
+
+
 }

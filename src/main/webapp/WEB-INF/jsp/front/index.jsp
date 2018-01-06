@@ -7,6 +7,27 @@
     <link rel="shortcunt icon" type="/image/x-icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="/css/common.css">
     <link type="text/css" rel="stylesheet" href="/css/index.css">
+    <script type="text/javascript" src="/js/jquery-1.8.2.min.js"></script>
+    <script>
+        <!--这里有点问题-->
+        var flag = false;
+        function comment(i) {
+            var div = document.getElementById("commentID" + i);
+
+            if (!flag)
+                div.style.display = "block";
+            else
+                div.style.display = "none";
+            flag = !flag;
+        }
+
+        function doComment(i) {
+            var1 = $("#cnt" + i).html();
+//            $("textt" + i).val(var1);
+            document.getElementById("textt" + i).value = var1;
+            document.getElementById("commentForm" + i).submit();
+        }
+    </script>
 </head>
 <body>
 <div class="header">
@@ -22,7 +43,7 @@
                 <li>
                     <form action="/search" method="post">
                         <input type="text" name="search"/>
-                        <input type="submit" value="搜索"/>
+                        <input type="submit" value="搜索" style="height: 30px"/>
                     </form>
                 </li>
                 <li>
@@ -49,155 +70,119 @@
 </div>
 <div class="main">
     <div class="content">
-        <!-- 说说1 -->
-        <div class="item">
-            <div class="item-main">
-                <div class="u-info">
-                    <div class="item-more-ation">
-                        <span></span>
-                    </div>
-                    <div class="u-icon">
-                        <img src="/images/user1.png" alt="IVEN-木罐"/>
-                    </div>
-                    <div class="name-pub">
-                        <div class="u-name">
-                            <a href="">IVEN-木罐</a>
+        <c:forEach items="${followNews}" var="news" varStatus="i">
+            <div class="item">
+                <div class="item-main">
+                    <!-- 说说1 -->
+                    <div class="u-info">
+                            <%--<div class="item-more-ation">--%>
+                            <%--<span></span>--%>
+                            <%--</div>--%>
+                        <div class="u-icon">
+                            <img src="/images/user1.png" alt="IVEN-木罐"/>
                         </div>
-                        <div class="u-pub">
-                            今天 09:21
+                        <div class="name-pub">
+                            <div class="u-name">
+                                <a href="">${news.user.username}</a>
+                            </div>
+                            <div class="u-pub">
+                                    ${news.newstime}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="itemcontent">
-                    <div class="thumbnail">
-                        <img src="/images/img2.png" alt="img1">
+                    <div class="itemcontent">
+                        <c:if test="${news.newsphoto!=null}">
+                            <div class="thumbnail">
+                                <img src="/images/img2.png" alt="img1">
+                            </div>
+                        </c:if>
+                        <div class="full-text">
+                            <p>
+                                    ${news.newstext}</p>
+                        </div>
                     </div>
-                    <div class="full-text">
-                        <p>
-                            另一个关于眼睛的研究结果是……眼睛大不大应该更多取决于眼皮的覆盖程度而与眼球或黑眼珠关系不大，我测量过以眼睛巨大著称的我老婆，实际尺寸与我没有多大差别，当然也有可能有和不同体积脑袋的比例差异产生的错觉。</p>
-                    </div>
-                </div>
-                <div class="u-list">
-                    <ul>
-                        <li><a href="#"><span>分享</span></a></li>
-                        <li>
-                            <a href="#" class="arrow-warp">
-                                <span>评论</span>
-                                <span> 6</span>
+                    <div class="u-list">
+                        <ul>
+                            <li><a href="#" class="arrow-warp"><span>转发</span>
+                                <span>${news.newsrelay}</span>
                                 <span class="arrow"></span>
+                            </a></li>
+                            <li>
+                                <a onclick="comment('${i.count}')" class="arrow-warp">
+                                    <span>评论</span>
+                                    <span>${news.newscomment}</span>
+                                    <span class="arrow"></span>
+                                </a>
+
+                            </li>
+                            <li><a href="#"><span>喜欢</span><span> ${news.newslike}</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 评论盖楼 -->
+                <div class="item-repeat" id="commentID${i.count}" style="display: none">
+                    <!-- 评论输入 -->
+                    <form id="commentForm${i.count}" method="post" action="/comment/create">
+                        <div class="self-repeat">
+                            <div class="repeat-inputtxt" id="cnt${i.count}" contenteditable="true"></div>
+                            <input type=hidden name="commentText" id="textt${i.count}">
+                            <input type=hidden name="newsId" value="${news.newsid}">
+                            <button type="button" class="repeat-inputtxt-btn" onclick="doComment(${i.count})"
+                            >
+                                评 论
+                            </button>
+                        </div>
+                    </form>
+                    <div class="repeat-list">
+                        <div class="repeat-icon">
+                            <a href="javascript:void(0)">
+                                <img src="./images/user3.png" alt="葵花妹" width="30px">
                             </a>
-
-                        </li>
-                        <li><a href="#"><span>喜欢</span><span> 124</span></a></li>
-                    </ul>
+                        </div>
+                        <!-- 其他用户的回复 -->
+                        <c:forEach items="${news.commentList}" var="comment">
+                            <div class="repeat-content">
+                                <div class="repeat-content-text">
+                                    <a href="javascript:void(0);">葵花妹</a>
+                                        ${comment.commenttext}
+                                </div>
+                                <div class="repeat-content-func">
+                                    <div class="repeat-time">
+                                            ${comment.commenttime}
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>
                 </div>
+                <!-- end -->
             </div>
-
-            <!-- 评论盖楼 -->
-            <div class="item-repeat">
-                <!-- 评论输入 -->
-                <div class="self-repeat">
-
-                    <div class="repeat-inputtxt" contenteditable="true"></div>
-                    <button type="button" class="repeat-inputtxt-btn">
-                        评 论
-                    </button>
-                </div>
-                <div class="repeat-list">
-                    <div class="repeat-icon">
-                        <a href="javascript:void(0)">
-                            <img src="./images/user3.png" alt="葵花妹" width="30px">
-                        </a>
-                    </div>
-                    <!-- 其他用户的回复 -->
-                    <div class="repeat-content">
-                        <div class="repeat-content-text">
-                            <a href="javascript:void(0);">葵花妹</a>
-                            ：哇，里面有双鞋我以前穿过，还不错呢。
-                        </div>
-                        <div class="repeat-content-func">
-                            <div class="repeat-time">
-                                5月13日 23:30
-                            </div>
-                            <div class="repeat-handler">
-                                <a href="">回复</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- 回复2 -->
-                <div class="repeat-list">
-                    <div class="repeat-icon">
-                        <a href="javascript:void(0)">
-                            <img src="./images/user3.png" alt="葵花妹" width="30px">
-                        </a>
-                    </div>
-                    <div class="repeat-content">
-                        <div class="repeat-content-text">
-                            <a href="javascript:void(0);">葵花妹</a>
-                            ：哇，里面有双鞋我以前穿过，还不错呢。（做个试验，div能够自适应的试验，结果还是不错的嘿嘿嘿嘿嘿。）
-                        </div>
-                        <div class="repeat-content-func">
-                            <div class="repeat-time">
-                                5月13日 23:30
-                            </div>
-                            <div class="repeat-handler">
-                                <a href="">回复</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- 回复3 -->
-                <div class="repeat-list">
-                    <div class="repeat-icon">
-                        <a href="javascript:void(0)">
-                            <img src="./images/user4.png" alt="葵花妹" width="30px">
-                        </a>
-                    </div>
-                    <div class="repeat-content">
-                        <div class="repeat-content-text">
-                            <a href="javascript:void(0);">Fstar</a>
-                            回复
-                            <a href="javascript:void(0);">葵花妹</a>
-                            ：我觉得还行。
-                        </div>
-                        <div class="repeat-content-func">
-                            <div class="repeat-time">
-                                5月13日 23:30
-                            </div>
-                            <div class="repeat-handler">
-                                <a href="">回复</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end -->
-        </div>
+        </c:forEach>
     </div>
-    <div class="p-info">
-        <div class="p-icon">
-            <img src="/images/person-icon.png" alt="picon">
-        </div>
-        <div class="p-name"><a href="homepage.html">${user.username}</a></div>
-        <div class="p-intro">绘画|设计爱好者</div>
-        <div class="p-profile">
-            <ul>
-                <li><a href="#">
-                    <span>关注</span>
-                    <span class="p-following">14</span>
-                </a></li>
-                <li><a href="#">
-                    <span>粉丝</span>
-                    <span class="p-followed">5</span>
-                </a></li>
-                <li><a href="#">
-                    <span>说说</span>
-                    <span class="p-publish">3</span>
-                </a></li>
-            </ul>
-        </div>
+</div>
+<div class="p-info">
+    <div class="p-icon">
+        <img src="/images/person-icon.png" alt="picon">
     </div>
+    <div class="p-name"><a href="homepage.html">${user.username}</a></div>
+    <div class="p-intro">${user.userbrief}----------fido</div>
+    <div class="p-profile">
+        <ul>
+            <li><a href="/relation/getFollowers?userName=${user.username}">
+                <span>关注</span>
+                <span class="p-following">14</span>
+            </a></li>
+            <li><a href="/relation/getFans?userName=${user.username}">
+                <span>粉丝</span>
+                <span class="p-followed">5</span>
+            </a></li>
+            <li><a href="/homepage/myOwn?username=${user.username}">
+                <span>说说</span>
+                <span class="p-publish">3</span>
+            </a></li>
+        </ul>
+    </div>
+</div>
 </div>
 <a id="gotop" href="#">回到顶部</a>
 <!-- 发布布局 -->
@@ -215,7 +200,6 @@
 </div>
 
 <script type="text/javascript" src="/js/publish.js"></script>
-<script type="text/javascript" src="/js/index.js">
-</script>
+<script type="text/javascript" src="/js/index.js"></script>
 </body>
 </html>

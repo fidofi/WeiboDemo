@@ -9,7 +9,7 @@ public class User {
 
     private String userbrief;
 
-    private Boolean usersex;
+    private boolean usersex;
 
     private String userphoto;
 

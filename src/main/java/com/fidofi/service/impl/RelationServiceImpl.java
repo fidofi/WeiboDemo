@@ -7,6 +7,7 @@ import com.fidofi.entity.Relation;
 import com.fidofi.entity.RelationKey;
 import com.fidofi.entity.User;
 import com.fidofi.service.RelationService;
+import com.fidofi.utils.RelationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +40,7 @@ public class RelationServiceImpl implements RelationService {
         if (relationList == null) {
             return ResultVO.createBySuccess("尚未有粉丝");
         }
-        List<User> userList = this.getUserListFromRelation(relationList, username);
+        List<User> userList = RelationUtils.getUserListFromRelation(relationList, username, userMapper);
         //找出关系中与条件给出用户名不同的那个即是粉丝
 
         return ResultVO.createBySuccess("查找粉丝成功", userList);
@@ -51,7 +52,7 @@ public class RelationServiceImpl implements RelationService {
         if (relationList == null) {
             return ResultVO.createBySuccess("尚未有关注的人");
         }
-        List<User> userList = this.getUserListFromRelation(relationList, username);
+        List<User> userList = RelationUtils.getUserListFromRelation(relationList, username, userMapper);
         return ResultVO.createBySuccess("查找关注用户", userList);
     }
 
@@ -140,22 +141,4 @@ public class RelationServiceImpl implements RelationService {
     }
 
 
-    //从关注关系中查找给定用户的给定关系的用户列表
-    private List<User> getUserListFromRelation(List<Relation> relationList, String username) {
-        List<User> userList = new ArrayList<>();
-        for (Relation relation : relationList) {
-            if (relation.getFirstuser().equals(username)) {
-                User user = userMapper.findUser(relation.getSecondeuser());
-                if (user != null) {
-                    userList.add(user);
-                }
-            } else {
-                User user = userMapper.findUser(relation.getFirstuser());
-                if (user != null) {
-                    userList.add(user);
-                }
-            }
-        }
-        return userList;
-    }
 }

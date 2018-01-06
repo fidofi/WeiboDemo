@@ -1,32 +1,25 @@
-package com.fidofi.entity;
+package com.fidofi.VO;
+
+import com.fidofi.entity.News;
 
 import java.util.Date;
 
-public class Relay {
+/**
+ * Created by fido on 2018/1/6.
+ * 转发消息的展示
+ */
+public class RelayVO {
     private Integer relayid;
 
     private String username;
 
-    private Integer newsid;
+    private News news;
 
     private String relaytext;
 
     private boolean relaystatus;
 
     private Date relaytime;
-
-    public Relay(Integer relayid, String username, Integer newsid, String relaytext, Boolean relaystatus, Date relaytime) {
-        this.relayid = relayid;
-        this.username = username;
-        this.newsid = newsid;
-        this.relaytext = relaytext;
-        this.relaystatus = relaystatus;
-        this.relaytime = relaytime;
-    }
-
-    public Relay() {
-        super();
-    }
 
     public Integer getRelayid() {
         return relayid;
@@ -41,15 +34,15 @@ public class Relay {
     }
 
     public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+        this.username = username;
     }
 
-    public Integer getNewsid() {
-        return newsid;
+    public News getNews() {
+        return news;
     }
 
-    public void setNewsid(Integer newsid) {
-        this.newsid = newsid;
+    public void setNews(News news) {
+        this.news = news;
     }
 
     public String getRelaytext() {
@@ -57,14 +50,14 @@ public class Relay {
     }
 
     public void setRelaytext(String relaytext) {
-        this.relaytext = relaytext == null ? null : relaytext.trim();
+        this.relaytext = relaytext;
     }
 
-    public Boolean getRelaystatus() {
+    public boolean isRelaystatus() {
         return relaystatus;
     }
 
-    public void setRelaystatus(Boolean relaystatus) {
+    public void setRelaystatus(boolean relaystatus) {
         this.relaystatus = relaystatus;
     }
 
@@ -78,10 +71,10 @@ public class Relay {
 
     @Override
     public String toString() {
-        return "Relay{" +
+        return "RelayVO{" +
                 "relayid=" + relayid +
                 ", username='" + username + '\'' +
-                ", newsid=" + newsid +
+                ", news=" + news +
                 ", relaytext='" + relaytext + '\'' +
                 ", relaystatus=" + relaystatus +
                 ", relaytime=" + relaytime +

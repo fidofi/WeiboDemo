@@ -1,8 +1,10 @@
 package com.fidofi.VO;
 
+import com.fidofi.entity.Comment;
 import com.fidofi.entity.User;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by fido on 2018/1/3.
@@ -26,6 +28,8 @@ public class NewsAndeUser {
     private Date newstime;
 
     private Boolean newsstatus;
+
+    private List<Comment> commentList;
 
     public Integer getNewsid() {
         return newsid;
@@ -99,6 +103,14 @@ public class NewsAndeUser {
         this.newsstatus = newsstatus;
     }
 
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+    }
+
     @Override
     public String toString() {
         return "NewsAndeUser{" +
@@ -111,6 +123,7 @@ public class NewsAndeUser {
                 ", newslike=" + newslike +
                 ", newstime=" + newstime +
                 ", newsstatus=" + newsstatus +
+                ", commentList=" + commentList +
                 '}';
     }
 }

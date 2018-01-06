@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by fido on 2018/1/3.
@@ -24,28 +27,43 @@ public class RelationController {
     private RelationService relationService;
 
     @RequestMapping("/follow")
-    public void follow(String secondUser, HttpSession session) {
-        System.out.println("进来了");
+    public String follow(String secondUser, HttpSession session) {
         User user = (User) session.getAttribute("user");
         RelationKey relationKey = new RelationKey(user.getUsername(), secondUser);
         ResultVO resultVO = relationService.follow(relationKey);
         System.out.println(resultVO + "------关注结果");
+        return "redirect:/user/index";
+    }
+
+    @RequestMapping("/getFollowers")
+    public String getFollowers(String userName, HttpServletRequest request) {
+        ResultVO<List<User>> resultVO = relationService.getFollowers(userName);
+        request.setAttribute("followers", resultVO.getData());
+        return "/front/followers";
+    }
+
+    @RequestMapping("/getFans")
+    public String getFans(String userName, HttpServletRequest request) {
+        ResultVO<List<User>> resultVO = relationService.getFans(userName);
+        request.setAttribute("fans", resultVO.getData());
+        return "/front/fans";
     }
 
     @RequestMapping("/unfollow")
-    public void unfollow(String secondUser, HttpSession session) {
+    public String unfollow(String secondUser, HttpSession session) {
         User user = (User) session.getAttribute("user");
         RelationKey relationKey = new RelationKey(user.getUsername(), secondUser);
         ResultVO resultVO = relationService.unfollow(relationKey);
         System.out.println(resultVO + "------取关结果");
-
+        return "redirect:/user/index";
     }
 
     @RequestMapping("/unfriend")
-    public void unfriend(String secondUser, HttpSession session) {
+    public String unfriend(String secondUser, HttpSession session) {
         User user = (User) session.getAttribute("user");
         RelationKey relationKey = new RelationKey(user.getUsername(), secondUser);
         ResultVO resultVO = relationService.unfriend(relationKey);
         System.out.println(resultVO + "------移除粉丝结果");
+        return "forward:/user/index";
     }
 }
