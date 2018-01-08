@@ -3,10 +3,13 @@ package com.fidofi.service.impl;
 import com.fidofi.VO.ResultVO;
 import com.fidofi.dao.NewsMapper;
 import com.fidofi.entity.News;
+import com.fidofi.entity.User;
 import com.fidofi.service.NewsService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by fido on 2018/1/3.
@@ -27,5 +30,14 @@ public class NewsServiceImpl implements NewsService {
         }
         newsMapper.insert(news);
         return ResultVO.createBySuccess("发布成功！");
+    }
+
+    @Override
+    public ResultVO<List<News>> getNewsList() {
+        List<News> list = newsMapper.getAllNews();
+        if (list == null) {
+            return ResultVO.createBySuccess("暂无资讯");
+        }
+        return ResultVO.createBySuccess("查找资讯列表成功", list);
     }
 }

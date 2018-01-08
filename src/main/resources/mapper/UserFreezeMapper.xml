@@ -88,4 +88,14 @@
     where rootName = #{rootname,jdbcType=VARCHAR}
       and userName = #{username,jdbcType=VARCHAR}
   </update>
+    <select id="getAllFreezeUser" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_freeze
+    </select>
+
+    <delete id="unfreeze" parameterType="java.lang.String">
+        delete from user_freeze
+        where  userName = #{username,jdbcType=VARCHAR}
+    </delete>
 </mapper>

@@ -1,7 +1,11 @@
 package com.fidofi.dao;
 
 import com.fidofi.entity.Manager;
+import com.fidofi.entity.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface ManagerMapper {
@@ -16,4 +20,8 @@ public interface ManagerMapper {
     int updateByPrimaryKeySelective(Manager record);
 
     int updateByPrimaryKey(Manager record);
+
+    Manager login(@Param("rootname") String username, @Param("rootpassword") String rootpassword);
+
+    List<Manager> getAllManagers();
 }

@@ -33,5 +33,7 @@ public interface NewsMapper {
 
     int delteComment(Integer newsId);
 
+    List<News> getAllNews();
+
 
 }

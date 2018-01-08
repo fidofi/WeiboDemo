@@ -4,6 +4,8 @@ import com.fidofi.entity.UserFreeze;
 import com.fidofi.entity.UserFreezeKey;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface UserFreezeMapper {
     int deleteByPrimaryKey(UserFreezeKey key);
@@ -20,4 +22,7 @@ public interface UserFreezeMapper {
 
     UserFreeze selectByUsername(String username);
 
+    List<UserFreeze> getAllFreezeUser();
+
+    int unfreeze(String username);
 }

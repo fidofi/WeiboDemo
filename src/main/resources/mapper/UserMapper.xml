@@ -133,4 +133,14 @@
       userPhoto = #{userphoto,jdbcType=VARCHAR}
     where userName = #{username,jdbcType=VARCHAR}
   </update>
+    <select id="getNormalUserList"  resultMap="userList">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+    </select>
+    <select id="getAllUserList"  resultMap="userList">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+    </select>
 </mapper>

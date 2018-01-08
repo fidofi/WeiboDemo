@@ -186,4 +186,9 @@
     set newsComment=newsComment-1
     where newsId = #{newsId,jdbcType=INTEGER}
 </update>
+    <select id="getAllNews"  resultMap="newsList">
+        select
+        <include refid="Base_Column_List"/>
+        from news
+    </select>
 </mapper>

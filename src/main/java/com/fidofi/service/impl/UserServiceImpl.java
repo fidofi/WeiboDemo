@@ -1,16 +1,20 @@
 package com.fidofi.service.impl;
 
 import com.fidofi.VO.ResultVO;
+import com.fidofi.VO.UserVO;
 import com.fidofi.dao.UserFreezeMapper;
 import com.fidofi.dao.UserMapper;
 import com.fidofi.entity.User;
+import com.fidofi.entity.UserFreeze;
 import com.fidofi.service.UserService;
 import com.fidofi.utils.PasswordUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -88,5 +92,53 @@ public class UserServiceImpl implements UserService {
         }
         User newUser = userMapper.selectByPrimaryKey(user.getUsername());
         return ResultVO.createBySuccess("更新成功", newUser);
+    }
+
+    @Override
+    public ResultVO<List<UserVO>> getAllUserList() {
+        List<UserVO> list = new ArrayList<>();
+
+        List<User> userList = userMapper.getAllUserList();
+        if (userList == null) {
+            return ResultVO.createBySuccess("暂无用户");
+        }
+        for (User user : userList) {
+            UserVO userVO = new UserVO();
+            userVO.setUsername(user.getUsername());
+            userVO.setUserbrief(user.getUserbrief());
+            userVO.setUsersex(user.getUsersex());
+            UserFreeze userFreeze = freezeMapper.selectByUsername(user.getUsername());
+            if (userFreeze != null) {
+                userVO.setFreezeResult(userFreeze.getFreezeresult());
+                userVO.setUserstatus(true);
+                userVO.setRootName(userFreeze.getRootname());
+            } else {
+                userVO.setUserstatus(false);
+            }
+            list.add(userVO);
+        }
+        return ResultVO.createBySuccess("查找用户列表成功", list);
+    }
+
+    @Override
+    public ResultVO<UserVO> getUOneUser(String username) {
+        User user= userMapper.selectByPrimaryKey(username);
+        if(user==null){
+            return ResultVO.createByError("不存在该用户");
+        }
+        UserVO userVO=new UserVO();
+        userVO.setUsername(user.getUsername());
+        userVO.setUsersex(user.getUsersex());
+        userVO.setUserbrief(user.getUserbrief());
+        UserFreeze userFreeze=freezeMapper.selectByUsername(username);
+        if(userFreeze!=null){
+            userVO.setRootName(userFreeze.getRootname());
+            userVO.setFreezeResult(userFreeze.getFreezeresult());
+            userVO.setUserstatus(true);
+        }
+        else{
+            userVO.setUserstatus(false);
+        }
+        return ResultVO.createBySuccess("查找单个用户成功",userVO);
     }
 }

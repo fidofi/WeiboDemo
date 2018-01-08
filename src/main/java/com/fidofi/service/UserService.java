@@ -1,9 +1,11 @@
 package com.fidofi.service;
 
 import com.fidofi.VO.ResultVO;
+import com.fidofi.VO.UserVO;
 import com.fidofi.entity.User;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -43,5 +45,18 @@ public interface UserService {
      */
     public ResultVO<User> update(User user);
 
+
+    /**
+     * 获得所有用户
+     * @return
+     */
+    public ResultVO<List<UserVO>> getAllUserList();
+
+    /**
+     * 获得某个用户
+     * @param username
+     * @return
+     */
+    public ResultVO<UserVO> getUOneUser(String username);
 
 }
