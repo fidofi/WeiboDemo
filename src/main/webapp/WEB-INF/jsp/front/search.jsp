@@ -25,8 +25,8 @@
         <ul>
             <c:forEach items="${userList}" var="u">
                 <li class="featureItem">
-                    <a href="#" style="text-decoration:none"; >
-                         <img src="/photo/fidofi/20180103231389.jpg" width="50px" height="50px" class="imgWrap">
+                    <a href="#" style="text-decoration:none" ;>
+                        <img src="/photo/fidofi/20180103231389.jpg" width="50px" height="50px" class="imgWrap">
                         <h4>${u.user.username}</h4>
                     </a>
                     <div>
@@ -75,14 +75,14 @@
                             <div class="article-operate-item-wrap">
                                 <div class="article-operate-item">
                                 <span class="collect"><i class="iconfont icon-star"></i><span
-                                        class="article-operate-item-txt">收藏</span></span>
+                                        class="article-operate-item-txt">转发</span></span>
                                 </div>
                             </div>
                             <div class="hr-line"></div>
                             <div class="article-operate-item-wrap">
                                 <div class="article-operate-item">
                                 <span class="share"><i class="iconfont icon-fenxiang1"></i><span
-                                        class="article-operate-item-txt">分享</span></span>
+                                        class="article-operate-item-txt">喜欢</span></span>
                                 </div>
                             </div>
                             <div class="hr-line"></div>

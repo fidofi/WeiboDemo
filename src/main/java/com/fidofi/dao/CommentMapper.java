@@ -25,5 +25,7 @@ public interface CommentMapper {
 
     List<Comment> getUnRead(Integer newsId);
 
+    int changeStatus(Integer commentid);
+
 
 }

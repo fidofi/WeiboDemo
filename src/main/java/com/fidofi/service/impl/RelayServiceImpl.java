@@ -68,4 +68,13 @@ public class RelayServiceImpl implements RelayService {
         }
         return ResultVO.createBySuccess("获取未读转发消息列表", relayList);
     }
+
+    @Override
+    public ResultVO doReadRelay(Integer relayid) {
+        int j = relayMapper.changeStatus(relayid);
+        if (j == 0) {
+            return ResultVO.createByError("操作失败");
+        } else return ResultVO.createBySuccess("操作成功");
+    }
 }
+

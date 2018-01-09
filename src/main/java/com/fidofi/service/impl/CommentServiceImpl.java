@@ -64,4 +64,12 @@ public class CommentServiceImpl implements CommentService {
         }
         return ResultVO.createBySuccess("获取未读评论列表", commentList);
     }
+
+    @Override
+    public ResultVO doReadComment(Integer commentid) {
+        int j = commentMapper.changeStatus(commentid);
+        if (j == 0) {
+            return ResultVO.createByError("操作失败");
+        } else return ResultVO.createBySuccess("操作成功");
+    }
 }

@@ -59,16 +59,16 @@ public class NewsController {
             file.transferTo(new File(path + File.separator + filename));
             News news = new News();
             news.setNewstext(newstext);
-            news.setNewsphoto("/" + user.getUsername() + filename);
+            news.setNewsphoto( user.getUsername()+"/"  + filename);
             news.setUsername(user.getUsername());
             newsService.create(news);
-            return "/front/index";
+            return "redirect:/user/index";
         } else {
             News news = new News();
             news.setNewstext(newstext);
             news.setUsername(user.getUsername());
             newsService.create(news);
-            return "/front/index";
+            return "redirect:/user/index";
         }
 
     }

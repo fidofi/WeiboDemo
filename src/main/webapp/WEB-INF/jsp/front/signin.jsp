@@ -45,7 +45,7 @@
             </div>
         </form>
         <!-- 登录 -->
-        <form id="signin" action="/user/index" method="post">
+        <form id="signin" action="/user/doLogin" method="post">
             <div class="mail-inputbox inputbox">
                 <input type="text" name="username" id="username" placeholder="用户名"/>
             </div>

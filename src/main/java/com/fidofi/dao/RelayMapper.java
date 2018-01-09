@@ -24,4 +24,6 @@ public interface RelayMapper {
     Integer getRelayNum(Integer newsId);
 
     List<Relay> getRelayByUser(String userName);
+
+    int changeStatus(Integer relayid);
 }

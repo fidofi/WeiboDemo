@@ -47,7 +47,7 @@
                 <li>
                     <form action="/search" method="post">
                         <input type="text" name="search"/>
-                        <input type="submit" value="搜索" style="height: 30px"/>
+                        <input type="submit" value="搜索" style="height: 25px"/>
                     </form>
                 </li>
                 <li>

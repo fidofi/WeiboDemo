@@ -123,4 +123,10 @@
         from relay
         where userName = #{userName,jdbcType=VARCHAR} order by relayTime desc
     </select>
+
+    <update id="changeStatus" parameterType="java.lang.Integer">
+        update relay
+        set relayStatus = true
+        where relayId = #{relayid,jdbcType=INTEGER}
+    </update>
 </mapper>

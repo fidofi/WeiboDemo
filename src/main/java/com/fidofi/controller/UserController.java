@@ -4,6 +4,7 @@ import com.fidofi.VO.NewsAndeUser;
 import com.fidofi.VO.RelayVO;
 import com.fidofi.VO.ResultVO;
 import com.fidofi.constant.PhotoConstant;
+import com.fidofi.entity.Comment;
 import com.fidofi.entity.News;
 import com.fidofi.entity.Relay;
 import com.fidofi.entity.User;
@@ -52,6 +53,28 @@ public class UserController {
     @RequestMapping("/login")
     public String index() {
         return "/front/signin";
+    }
+
+    @RequestMapping("/doLogin")
+    public String doLogin(User user, HttpSession session, HttpServletRequest request) {
+        ResultVO<User> resultVO;
+        if (StringUtils.isBlank(user.getUsername())) {
+            request.setAttribute("loginMesg", "用户名不能为空");
+            return "/front/signin";
+        }
+        if (StringUtils.isBlank(user.getUserpassword())) {
+            request.setAttribute("loginMesg", "密码不能为空");
+            return "/front/signin";
+        }
+        resultVO = userService.login(user.getUsername(), user.getUserpassword());
+        if (resultVO.getData() == null) {
+            request.setAttribute("loginMesg", resultVO.getMessage());
+            return "/front/signin";
+        } else {
+            //登录成功
+            session.setAttribute("user", resultVO.getData());
+        }
+        return "redirect:/user/index";
     }
 
     //登录成功后要把该用户关注的用户的资讯和自己的资讯展示出来
@@ -150,12 +173,28 @@ public class UserController {
 
     //查看通知
     @RequestMapping("/getNotice")
-    public String getNotice() {
-
-
-        return "";
+    public String getNotice(HttpSession session, HttpServletRequest request) {
+        User user = (User) session.getAttribute("user");
+        //未读转发消息通知
+        ResultVO<List<Relay>> resultVO = relayService.getUnRead(user.getUsername());
+        //未读评论通知
+        ResultVO<List<Comment>> resultVO1 = commentService.getUnRead(user.getUsername());
+        request.setAttribute("relayList", resultVO.getData());
+        request.setAttribute("commentList", resultVO1.getData());
+        return "/front/notice";
     }
 
+    @RequestMapping("doReadComment")
+    public String doReadComment(Integer commentid) {
+        commentService.doReadComment(commentid);
+        return "redirect:/user/getNotice";
+    }
+
+    @RequestMapping("doReadRelay")
+    public String doReadRelay(Integer relayid) {
+        relayService.doReadRelay(relayid);
+        return "redirect:/user/getNotice";
+    }
 
     //更改头像
     @RequestMapping("/changePhoto")

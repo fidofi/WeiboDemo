@@ -31,4 +31,11 @@ public interface CommentService {
      * @return
      */
     public ResultVO<List<Comment>> getUnRead(String userName);
+
+    /**
+     * 读评论
+     * @param commentid
+     * @return
+     */
+    public ResultVO doReadComment(Integer commentid);
 }

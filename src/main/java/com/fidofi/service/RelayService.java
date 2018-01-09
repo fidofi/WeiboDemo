@@ -35,4 +35,11 @@ public interface RelayService {
      */
     public ResultVO<List<Relay>> getUnRead(String userName);
 
+    /**
+     * 读取转发信息
+     * @param relayid
+     * @return
+     */
+    public ResultVO doReadRelay(Integer relayid);
+
 }
