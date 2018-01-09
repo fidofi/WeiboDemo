@@ -13,11 +13,11 @@
     </resultMap>
     <resultMap type="com.fidofi.entity.User" id="userList">
         <result column="userName" property="username"/>
-        <result column="userPassword"  property="userpassword"/>
-        <result column="userBrief"  property="userbrief"/>
+        <result column="userPassword" property="userpassword"/>
+        <result column="userBrief" property="userbrief"/>
         <result column="userSalt" property="usersalt"/>
         <result column="userSex" property="usersex"/>
-        <result column="userPhoto"  property="userphoto"/>
+        <result column="userPhoto" property="userphoto"/>
     </resultMap>
     <sql id="Base_Column_List">
     userName, userPassword, userSalt, userBrief, userSex, userPhoto
@@ -133,14 +133,26 @@
       userPhoto = #{userphoto,jdbcType=VARCHAR}
     where userName = #{username,jdbcType=VARCHAR}
   </update>
-    <select id="getNormalUserList"  resultMap="userList">
+    <select id="getNormalUserList" resultMap="userList">
         select
         <include refid="Base_Column_List"/>
         from user
     </select>
-    <select id="getAllUserList"  resultMap="userList">
+    <select id="getAllUserList" resultMap="userList">
         select
         <include refid="Base_Column_List"/>
         from user
     </select>
+
+    <update id="changePassword">
+        update user
+        set userPassword = #{newpassword,jdbcType=VARCHAR},
+        userSalt =#{salt,jdbcType=VARCHAR}
+        where userName = #{username,jdbcType=VARCHAR}
+    </update>
+    <update id="changePhoto">
+        update user
+        set userPhoto = #{userphoto,jdbcType=VARCHAR}
+        where userName = #{username,jdbcType=VARCHAR}
+    </update>
 </mapper>

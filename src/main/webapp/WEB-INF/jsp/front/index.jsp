@@ -23,9 +23,13 @@
 
         function doComment(i) {
             var1 = $("#cnt" + i).html();
-//            $("textt" + i).val(var1);
             document.getElementById("textt" + i).value = var1;
             document.getElementById("commentForm" + i).submit();
+        }
+
+        function relay(newsid) {
+            var result = prompt("请输入转发内容：");
+            window.location.href = "/user/relayNews?newsId=" + newsid + "&relayText=" + result;
         }
     </script>
 </head>
@@ -51,15 +55,16 @@
                     <div class="num">6</div>
                 </li>
                 <li>
-                    <a href="#">通知</a>
+                    <a href="/user/getNotice">通知</a>
                     <div class="num">14</div>
                 </li>
                 <li class="account">
-                    <a href="homepage.html">${user.username}</a>
+                    <a href="/user/index">${sessionScope.user.username}</a>
                     <div class="account-panel">
                         <ul>
                             <li class="panel1"><a href="/user/setting">设置</a></li>
                             <li class="panel2"><a href="/user/logout">退出</a></li>
+                            <li class="panel2"><a href="/user/changePassPage">更改密码</a></li>
                         </ul>
                     </div>
                 </li>
@@ -79,7 +84,7 @@
                             <%--<span></span>--%>
                             <%--</div>--%>
                         <div class="u-icon">
-                            <img src="/images/user1.png" alt="IVEN-木罐"/>
+                            <img src="/photo/${news.user.userphoto}" alt="IVEN-木罐"/>
                         </div>
                         <div class="name-pub">
                             <div class="u-name">
@@ -93,7 +98,7 @@
                     <div class="itemcontent">
                         <c:if test="${news.newsphoto!=null}">
                             <div class="thumbnail">
-                                <img src="/images/img2.png" alt="img1">
+                                <img src="/photo${news.newsphoto}" alt="img1">
                             </div>
                         </c:if>
                         <div class="full-text">
@@ -103,7 +108,7 @@
                     </div>
                     <div class="u-list">
                         <ul>
-                            <li><a href="#" class="arrow-warp"><span>转发</span>
+                            <li><a class="arrow-warp" onclick="relay('${news.newsid}')"><span>转发</span>
                                 <span>${news.newsrelay}</span>
                                 <span class="arrow"></span>
                             </a></li>
@@ -115,7 +120,8 @@
                                 </a>
 
                             </li>
-                            <li><a href="#"><span>喜欢</span><span> ${news.newslike}</span></a></li>
+                            <li><a href="/news/like?newsid=${news.newsid}"><span>喜欢</span><span> ${news.newslike}</span></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -143,7 +149,7 @@
                         <c:forEach items="${news.commentList}" var="comment">
                             <div class="repeat-content">
                                 <div class="repeat-content-text">
-                                    <a href="javascript:void(0);">葵花妹</a>
+                                    <a href="javascript:void(0);">${comment.username}</a>
                                         ${comment.commenttext}
                                 </div>
                                 <div class="repeat-content-func">
@@ -158,25 +164,79 @@
                 <!-- end -->
             </div>
         </c:forEach>
+        <c:forEach items="${followRelays}" var="relays">
+        <div class="item">
+        <div class="item-main">
+            <!-- 说说1 -->
+            <div class="u-info">
+                    <%--<div class="item-more-ation">--%>
+                    <%--<span></span>--%>
+                    <%--</div>--%>
+                <div class="u-icon">
+                    <img src="/photo/" alt="IVEN-木罐"/>
+                </div>
+                <div class="name-pub">
+                    <div class="u-name">
+                        <a href="">${relays.user.username}</a>
+                    </div>
+                    <div class="u-pub">
+                            ${relays.relaytime}
+                    </div>
+                </div>
+            </div>
+            ${relays.relaytext}
+            <div class="itemcontent">
+                <c:if test="${relays.news.newsphoto!=null}">
+                    <div class="thumbnail">
+                        <img src="/photo${relays.news.newsphoto}" alt="img1">
+                    </div>
+                </c:if>
+                <div class="full-text">
+                    <p>
+                            ${relays.news.newstext}</p>
+                </div>
+            </div>
+            <%--<div class="u-list">--%>
+                <%--<ul>--%>
+                    <%--<li><a class="arrow-warp" onclick="relay('${news.newsid}')"><span>转发</span>--%>
+                        <%--<span>${relays.news.newsrelay}</span>--%>
+                        <%--<span class="arrow"></span>--%>
+                    <%--</a></li>--%>
+                    <%--<li>--%>
+                        <%--<a onclick="comment('${i.count}')" class="arrow-warp">--%>
+                            <%--<span>评论</span>--%>
+                            <%--<span>${relays.news.newscomment}</span>--%>
+                            <%--<span class="arrow"></span>--%>
+                        <%--</a>--%>
+
+                    <%--</li>--%>
+                    <%--<li><a href="/news/like?newsid=${news.newsid}"><span>喜欢</span><span> ${news.newslike}</span></a>--%>
+                    <%--</li>--%>
+                <%--</ul>--%>
+            <%--</div>--%>
+        </div>
     </div>
+
+    </c:forEach>
+</div>
 </div>
 <div class="p-info">
     <div class="p-icon">
-        <img src="/images/person-icon.png" alt="picon">
+        <img src="/photo/${sessionScope.user.userphoto}" alt="picon" style="width: 100px;height: 100px">
     </div>
-    <div class="p-name"><a href="homepage.html">${user.username}</a></div>
-    <div class="p-intro">${user.userbrief}----------fido</div>
+    <div class="p-name"><a href="homepage.html">${sessionScope.user.username}</a></div>
+    <div class="p-intro">${sessionScope.user.userbrief}</div>
     <div class="p-profile">
         <ul>
-            <li><a href="/relation/getFollowers?userName=${user.username}">
+            <li><a href="/relation/getFollowers?userName=${sessionScope.user.username}">
                 <span>关注</span>
                 <span class="p-following">14</span>
             </a></li>
-            <li><a href="/relation/getFans?userName=${user.username}">
+            <li><a href="/relation/getFans?userName=${sessionScope.user.username}">
                 <span>粉丝</span>
                 <span class="p-followed">5</span>
             </a></li>
-            <li><a href="/homepage/myOwn?username=${user.username}">
+            <li><a href="/homepage/myOwn?username=${sessionScope.user.username}">
                 <span>说说</span>
                 <span class="p-publish">3</span>
             </a></li>

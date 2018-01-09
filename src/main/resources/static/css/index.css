@@ -197,7 +197,11 @@
     height: 202px;
     margin-top: 61px;
     float: right;
-    position: relative;
+    /*position: relative;*/
+    /*position: absolute;*/
+    position: absolute;
+    bottom: 160px;
+    left: 1200px;
     text-align: center;
 }
 .p-icon{

@@ -122,23 +122,50 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResultVO<UserVO> getUOneUser(String username) {
-        User user= userMapper.selectByPrimaryKey(username);
-        if(user==null){
+        User user = userMapper.selectByPrimaryKey(username);
+        if (user == null) {
             return ResultVO.createByError("不存在该用户");
         }
-        UserVO userVO=new UserVO();
+        UserVO userVO = new UserVO();
         userVO.setUsername(user.getUsername());
         userVO.setUsersex(user.getUsersex());
         userVO.setUserbrief(user.getUserbrief());
-        UserFreeze userFreeze=freezeMapper.selectByUsername(username);
-        if(userFreeze!=null){
+        UserFreeze userFreeze = freezeMapper.selectByUsername(username);
+        if (userFreeze != null) {
             userVO.setRootName(userFreeze.getRootname());
             userVO.setFreezeResult(userFreeze.getFreezeresult());
             userVO.setUserstatus(true);
-        }
-        else{
+        } else {
             userVO.setUserstatus(false);
         }
-        return ResultVO.createBySuccess("查找单个用户成功",userVO);
+        return ResultVO.createBySuccess("查找单个用户成功", userVO);
+    }
+
+    @Override
+    public ResultVO changePassword(String username, String oldPassword, String newPassword) {
+        User user = userMapper.selectByPrimaryKey(username);
+        String salt = user.getUsersalt();
+        String password = PasswordUtils.MD5(oldPassword + salt);
+        if (!user.getUserpassword().equals(password)) {
+            return ResultVO.createByError("旧密码输入不正确");
+        }
+        String newSalt = PasswordUtils.getSalt();
+        String newPass = PasswordUtils.MD5(newPassword + newSalt);
+        int j = userMapper.changePassword(username, newPass, newSalt);
+        if (j == 0) {
+            return ResultVO.createByError("更改失败");
+        } else {
+            return ResultVO.createBySuccess("更改成功,请重新登录！");
+        }
+
+    }
+
+    @Override
+    public ResultVO changePhoto(String userphoto, String username) {
+        int j = userMapper.changePhoto(userphoto, username);
+        if (j == 0) {
+            return ResultVO.createByError("更换头像失败");
+        } else return ResultVO.createBySuccess("更换头像成功");
+
     }
 }

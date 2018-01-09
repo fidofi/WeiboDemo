@@ -35,5 +35,7 @@ public interface NewsMapper {
 
     List<News> getAllNews();
 
+    int doLike(Integer newsid);
+
 
 }

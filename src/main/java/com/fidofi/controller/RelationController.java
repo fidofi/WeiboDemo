@@ -32,13 +32,14 @@ public class RelationController {
         RelationKey relationKey = new RelationKey(user.getUsername(), secondUser);
         ResultVO resultVO = relationService.follow(relationKey);
         System.out.println(resultVO + "------关注结果");
-        return "redirect:/user/index";
+        return "forward:/user/index";
     }
 
     @RequestMapping("/getFollowers")
     public String getFollowers(String userName, HttpServletRequest request) {
         ResultVO<List<User>> resultVO = relationService.getFollowers(userName);
         request.setAttribute("followers", resultVO.getData());
+        System.out.println("关注的人----" + resultVO.getData());
         return "/front/followers";
     }
 
@@ -46,6 +47,7 @@ public class RelationController {
     public String getFans(String userName, HttpServletRequest request) {
         ResultVO<List<User>> resultVO = relationService.getFans(userName);
         request.setAttribute("fans", resultVO.getData());
+        System.out.println("粉丝列表----" + resultVO.getData());
         return "/front/fans";
     }
 
@@ -55,7 +57,7 @@ public class RelationController {
         RelationKey relationKey = new RelationKey(user.getUsername(), secondUser);
         ResultVO resultVO = relationService.unfollow(relationKey);
         System.out.println(resultVO + "------取关结果");
-        return "redirect:/user/index";
+        return "forward:/relation/getFollowers?username=" + user.getUsername();
     }
 
     @RequestMapping("/unfriend")
@@ -64,6 +66,6 @@ public class RelationController {
         RelationKey relationKey = new RelationKey(user.getUsername(), secondUser);
         ResultVO resultVO = relationService.unfriend(relationKey);
         System.out.println(resultVO + "------移除粉丝结果");
-        return "forward:/user/index";
+        return "forward:/relation/getFans?username=" + user.getUsername();
     }
 }

@@ -73,4 +73,17 @@ public class User {
     public void setUserphoto(String userphoto) {
         this.userphoto = userphoto == null ? null : userphoto.trim();
     }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", userpassword='" + userpassword + '\'' +
+                ", usersalt='" + usersalt + '\'' +
+                ", userbrief='" + userbrief + '\'' +
+                ", usersex=" + usersex +
+                ", userphoto='" + userphoto + '\'' +
+                '}';
+    }
 }

@@ -14,6 +14,7 @@ public interface NewsService {
 
     /**
      * 发布资讯
+     *
      * @param news
      * @return
      */
@@ -24,4 +25,12 @@ public interface NewsService {
      * @return
      */
     public ResultVO<List<News>> getNewsList();
+
+    /**
+     * 点赞
+     *
+     * @param newsid
+     * @return
+     */
+    public ResultVO doLike(Integer newsid);
 }

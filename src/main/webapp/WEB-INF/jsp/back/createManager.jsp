@@ -5,6 +5,7 @@
 <html>
 <head>
     <title>新增管理员</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">

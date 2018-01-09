@@ -32,6 +32,7 @@ public interface UserService {
 
     /**
      * 根据名字查询用户
+     *
      * @param username
      * @return
      */
@@ -40,6 +41,7 @@ public interface UserService {
     /**
      * 更新用户
      * 返回更新后的用户
+     *
      * @param user
      * @return
      */
@@ -48,15 +50,37 @@ public interface UserService {
 
     /**
      * 获得所有用户
+     *
      * @return
      */
     public ResultVO<List<UserVO>> getAllUserList();
 
     /**
      * 获得某个用户
+     *
      * @param username
      * @return
      */
     public ResultVO<UserVO> getUOneUser(String username);
+
+    /**
+     * 更改密码
+     *
+     * @param username
+     * @param oldPassword
+     * @param newPassword
+     * @return
+     */
+    public ResultVO changePassword(String username, String oldPassword, String newPassword);
+
+
+    /**
+     * 更改头像
+     *
+     * @param userphoto
+     * @param username
+     * @return
+     */
+    public ResultVO changePhoto(String userphoto, String username);
 
 }

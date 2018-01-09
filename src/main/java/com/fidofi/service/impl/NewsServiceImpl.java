@@ -40,4 +40,13 @@ public class NewsServiceImpl implements NewsService {
         }
         return ResultVO.createBySuccess("查找资讯列表成功", list);
     }
+
+    @Override
+    public ResultVO doLike(Integer newsid) {
+        int j=newsMapper.doLike(newsid);
+        if(j==0) {
+            return ResultVO.createByError("点赞失败");
+        }
+        return ResultVO.createBySuccess("点赞成功");
+    }
 }

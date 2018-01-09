@@ -28,4 +28,7 @@ public interface UserMapper {
 
     List<User> getAllUserList();
 
+    int changePassword(@Param("username") String username,@Param("newpassword") String newpassword,@Param("salt") String salt);
+
+    int changePhoto(@Param("userphoto") String userphoto,@Param("username") String username);
 }

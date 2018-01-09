@@ -90,7 +90,8 @@ public class IndexServiceImpl implements IndexService {
         for (Relay relay : relayList) {
             RelayVO relayVO = new RelayVO();
             News news = newsMapper.selectByPrimaryKey(relay.getNewsid());
-            relayVO.setUsername(relay.getUsername());
+            User user=userMapper.selectByPrimaryKey(relay.getUsername());
+            relayVO.setUser(user);
             relayVO.setNews(news);
             if (relay.getRelaytext() == null) {
                 relayVO.setRelaytext("转发");

@@ -6,6 +6,7 @@
     <link rel="shortcunt icon" type="/image/x-icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="/css/common.css">
     <link type="text/css" rel="stylesheet" href="/css/setting.css">
+    <link href="https://cdn.bootcss.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="header">
@@ -35,45 +36,50 @@
     </div>
 </div>
 <div></div>
-    <div class="settingbox">
-        <div class="s-title">账号设置</div>
-        <div class="imgbox">
-            <img src="/images/setting-icon.png" alt="头像">
-            <div class="icon-bg"></div>
-            <span class="txt-changeicon">更换头像</span>
-        </div>
-        <!--更改资料表单-->
-        <div class="txtbox">
-            <form action="/user/updateUser" method="post">
-                <div class="s-nick">
-                    <label>名称</label>
-                    <input type="text" name="username" value="${updateUser.username}" readonly/>
-                </div>
-                <div class="s-sex" style="margin-top: 15px">
-                    <label>性别</label>
-                    <c:choose>
-                        <c:when test="${updateUser.usersex}">
-                            <select name="usersex">
-                                <option value="true" selected>男</option>
-                                <option value="false">女</option>
-                            </select>
-                        </c:when>
-                        <c:otherwise>
-                            <select name="usersex">
-                                <option value="true">男</option>
-                                <option value="false" selected>女</option>
-                            </select>
-                        </c:otherwise>
-                    </c:choose>
-                </div>
-                <div class="s-sign" style="margin-top: 15px">
-                    <label class="l-sign">签名</label>
-                    <textarea class="txt-sign" name="userbrief">${updateUser.userbrief}</textarea>
-                </div>
-                <button class="s-submit">保存</button>
-            </form>
-        </div>
+<div class="settingbox">
+    <div class="s-title">账号设置</div>
+    <div class="imgbox">
+        <img src="/images/setting-icon.png" alt="头像">
+        <div class="icon-bg"></div>
+        <%--<span class="txt-changeicon">更换头像</span>--%>
     </div>
+    <form action="/user/changePhoto" enctype="multipart/form-data" method="post">
+        <input type="file" value="更换头像" name="userphoto" accept="image/jpeg"/>
+        <input type="submit" value="确定"/>
+        <%--<button type="submit" class="btn btn-default">确定</button>--%>
+    </form>
+    <!--更改资料表单-->
+    <div class="txtbox">
+        <form action="/user/updateUser" method="post">
+            <div class="s-nick">
+                <label>名称</label>
+                <input type="text" name="username" value="${updateUser.username}" readonly/>
+            </div>
+            <div class="s-sex" style="margin-top: 15px">
+                <label>性别</label>
+                <c:choose>
+                    <c:when test="${updateUser.usersex}">
+                        <select name="usersex">
+                            <option value="true" selected>男</option>
+                            <option value="false">女</option>
+                        </select>
+                    </c:when>
+                    <c:otherwise>
+                        <select name="usersex">
+                            <option value="true">男</option>
+                            <option value="false" selected>女</option>
+                        </select>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+            <div class="s-sign" style="margin-top: 15px">
+                <label class="l-sign">签名</label>
+                <textarea class="txt-sign" name="userbrief">${updateUser.userbrief}</textarea>
+            </div>
+            <button class="s-submit">保存</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>
 

@@ -6,8 +6,10 @@ import com.fidofi.VO.ResultVO;
 import com.fidofi.dao.CommentMapper;
 import com.fidofi.dao.NewsMapper;
 import com.fidofi.dao.RelayMapper;
+import com.fidofi.dao.UserMapper;
 import com.fidofi.entity.News;
 import com.fidofi.entity.Relay;
+import com.fidofi.entity.User;
 import com.fidofi.service.HomePageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,8 @@ public class HomePageServiceImpl implements HomePageService {
     private CommentMapper commentMapper;
     @Autowired
     private RelayMapper relayMapper;
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public ResultVO<List<NewsAndeUser>> getNews(String username) {
@@ -63,7 +67,8 @@ public class HomePageServiceImpl implements HomePageService {
             relayVO.setRelaystatus(relay.getRelaystatus());
             relayVO.setRelayid(relay.getRelayid());
             relayVO.setRelaytext(relay.getRelaytext());
-            relayVO.setUsername(username);
+            User user=userMapper.selectByPrimaryKey(relay.getUsername());
+            relayVO.setUser(user);
             relayVO.setNews(newsMapper.selectByPrimaryKey(relay.getNewsid()));
             relayVOList.add(relayVO);
         }

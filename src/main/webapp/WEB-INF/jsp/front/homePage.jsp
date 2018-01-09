@@ -70,7 +70,7 @@
 <div class="banner">
     <div class="p-info">
         <div class="p-icon">
-            <img src="images/person-icon.png" alt="picon">
+            <img src="/photo/${current.userphoto}" alt="picon">
         </div>
         <div class="p-name"><a href="homepage.html">${currentUser.username}</a></div>
         <div class="p-intro">${currentUser.userbrief}</div>
@@ -103,7 +103,7 @@
                         <%--<span></span>--%>
                         <%--</div>--%>
                     <div class="u-icon">
-                        <img src="/images/user1.png" alt="IVEN-木罐"/>
+                        <img src="${news.user.userphoto}"/>
                     </div>
                     <div class="name-pub">
                         <div class="u-name">
@@ -117,7 +117,7 @@
                 <div class="itemcontent">
                     <c:if test="${news.newsphoto!=null}">
                         <div class="thumbnail">
-                            <img src="/images/img2.png" alt="img1">
+                            <img src="/photo/${news.newsphoto}" alt="img1">
                         </div>
                     </c:if>
                     <div class="full-text">
@@ -160,7 +160,7 @@
                 <div class="repeat-list">
                     <div class="repeat-icon">
                         <a href="javascript:void(0)">
-                            <img src="./images/user3.png" alt="葵花妹" width="30px">
+                            <img src="/images/user3.png" alt="葵花妹" width="30px">
                         </a>
                     </div>
                     <!-- 其他用户的回复 -->

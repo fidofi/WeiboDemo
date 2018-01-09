@@ -4,6 +4,7 @@ import com.fidofi.constant.PhotoConstant;
 import com.fidofi.dao.NewsMapper;
 import com.fidofi.entity.News;
 import com.fidofi.entity.User;
+import com.fidofi.service.NewsService;
 import com.fidofi.utils.PhotoUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,7 @@ import java.io.IOException;
 public class NewsController {
 
     @Autowired
-    private NewsMapper newsMapper;
+    private NewsService newsService;
 
     /**
      * 发布资讯
@@ -60,15 +61,22 @@ public class NewsController {
             news.setNewstext(newstext);
             news.setNewsphoto("/" + user.getUsername() + filename);
             news.setUsername(user.getUsername());
-            newsMapper.insert(news);
+            newsService.create(news);
             return "/front/index";
         } else {
             News news = new News();
             news.setNewstext(newstext);
             news.setUsername(user.getUsername());
-            newsMapper.insert(news);
+            newsService.create(news);
             return "/front/index";
         }
 
+    }
+
+    //点赞
+    @RequestMapping("/like")
+    public String like(Integer newsid) {
+        newsService.doLike(newsid);
+        return "redirect:/user/index";
     }
 }
