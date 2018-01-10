@@ -17,7 +17,7 @@ public class MyWebMvcConfigurer extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         InterceptorRegistration registration=registry.addInterceptor(new UserInterceptor());
         registration.addPathPatterns("/user/*");
-        registration.excludePathPatterns("/user/login","/user/doLogin");
+        registration.excludePathPatterns("/user/login","/user/doLogin","/user/register");
 
         InterceptorRegistration registration2=registry.addInterceptor(new ManagerInterceptor());
         registration2.addPathPatterns("/manager/*");

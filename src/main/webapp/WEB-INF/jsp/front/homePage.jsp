@@ -70,7 +70,7 @@
 <div class="banner">
     <div class="p-info">
         <div class="p-icon">
-            <img src="/photo/${current.userphoto}" alt="picon">
+            <img src="/photo/${currentUser.userphoto}" alt="picon">
         </div>
         <div class="p-name"><a href="homepage.html">${currentUser.username}</a></div>
         <div class="p-intro">${currentUser.userbrief}</div>
@@ -117,7 +117,7 @@
                 <div class="itemcontent">
                     <c:if test="${news.newsphoto!=null}">
                         <div class="thumbnail">
-                            <img src="/photo/${news.newsphoto}" alt="img1">
+                            <img src="/photo/${news.newsphoto}" alt="img1" style="height: 100px;width: 100px">
                         </div>
                     </c:if>
                     <div class="full-text">

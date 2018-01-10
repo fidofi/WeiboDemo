@@ -84,7 +84,7 @@
                             <%--<span></span>--%>
                             <%--</div>--%>
                         <div class="u-icon">
-                            <img src="/photo/${news.user.userphoto}" alt="IVEN-木罐"/>
+                            <img src="/photo/${news.user.userphoto}" alt="IVEN-木罐" style="height:60px;width: 60px;"/>
                         </div>
                         <div class="name-pub">
                             <div class="u-name">
@@ -98,7 +98,7 @@
                     <div class="itemcontent">
                         <c:if test="${news.newsphoto!=null}">
                             <div class="thumbnail">
-                                <img src="/photo${news.newsphoto}" alt="img1">
+                                <img src="/photo/${news.newsphoto}" alt="img1" style="width:100px;height: 100px;"/>
                             </div>
                         </c:if>
                         <div class="full-text">
@@ -173,7 +173,7 @@
                     <%--<span></span>--%>
                     <%--</div>--%>
                 <div class="u-icon">
-                    <img src="/photo/" alt="IVEN-木罐"/>
+                    <img src="/photo/${relays.user.userphoto}" alt="IVEN-木罐" style="width: 60px;height: 60px"/>
                 </div>
                 <div class="name-pub">
                     <div class="u-name">
@@ -188,7 +188,7 @@
             <div class="itemcontent">
                 <c:if test="${relays.news.newsphoto!=null}">
                     <div class="thumbnail">
-                        <img src="/photo${relays.news.newsphoto}" alt="img1">
+                        <img src="/photo/${relays.news.newsphoto}" alt="img1" style="height:100px;width: 100px">
                     </div>
                 </c:if>
                 <div class="full-text">

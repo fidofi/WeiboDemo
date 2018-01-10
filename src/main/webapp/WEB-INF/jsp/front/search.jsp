@@ -26,7 +26,7 @@
             <c:forEach items="${userList}" var="u">
                 <li class="featureItem">
                     <a href="#" style="text-decoration:none" ;>
-                        <img src="/photo/fidofi/20180103231389.jpg" width="50px" height="50px" class="imgWrap">
+                        <img src="/photo/${u.user.userphoto}" width="50px" height="50px" class="imgWrap">
                         <h4>${u.user.username}</h4>
                     </a>
                     <div>
@@ -56,7 +56,7 @@
             <c:forEach items="${newsList}" var="news">
                 <article>
                     <div class="knowledgeSquareContent">
-                        <div class="imgWrap user-icon"><a href="#"><img src="/images/user2.png" alt="用户个人头像"></a></div>
+                        <div class="imgWrap user-icon"><a href="#"><img src="/photo/${news.user.userphoto}" alt="用户个人头像" style="height:60px;width: 60px"></a></div>
                         <div class="article-title">
                             <h4 class="article-content-title">${news.user.username}</h4>
                             <p class="user-editInfo">发表于&nbsp;&nbsp;<span
@@ -65,9 +65,11 @@
                         <div class="article-content">
                             <p>
                                 <!-- 图片 -->
-                            <div class="article-content-img"></div>
-                            <img class="article-content-img_hide" src="/images/img2.png" alt="文章配图"
-                                 style="border:10px solid #66CCFF; position: absolute; left:16em; top:50%; transform: translateY(-50%); z-index: 99; display: none;">
+                            <div class="article-content-img">
+                            <img  src="/photo/${news.newsphoto}" alt="文章配图" style="height: 100px;width: 100px" />
+                        </div>
+                            <%--<img  src="/photo/${news.newsphoto}" alt="文章配图"--%>
+                                 <%--style="border:10px solid #66CCFF; position: absolute; left:16em; top:50%; transform: translateY(-50%); z-index: 99; display: none;">--%>
                             <!-- 文字内容 -->
                             <p>${news.newstext} </p>
                         </div>
